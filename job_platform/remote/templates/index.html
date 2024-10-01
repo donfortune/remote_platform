@@ -1,0 +1,203 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Jobs Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    Header / Navbar 
+    <header>
+        <nav class="navbar">
+            <div class="logo">Remote Jobs Hub</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Job Listings</a></li>
+                <li><a href="#">Post a Job</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="{% url 'login' %}" class="cta">Login</a></li>
+                <li><a href="{% url 'signup' %}" class="cta">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+     Hero Section 
+    <section class="hero">
+        <h1>Find Remote Jobs that Match Your Passion</h1>
+        <p>Connecting ALX grads and beyond to opportunities worldwide.</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for jobs (e.g. Web Developer, Data Analyst)">
+            <button class="search-btn">Search</button>
+        </div>
+    </section>
+
+     Job Listings Section 
+    <section class="job-listings">
+        <div class="job-card">
+            <div class="company-logo"><img src="https://via.placeholder.com/50" alt="Company Logo"></div>
+            <div class="job-info">
+                <h3>Remote Web Developer</h3>
+                <p>Company: AwesomeTech Inc.</p>
+                <p>Location: Remote</p>
+            </div>
+            <button class="details-btn">View Details</button>
+        </div>
+        <div class="job-card">
+            <div class="company-logo"><img src="https://via.placeholder.com/50" alt="Company Logo"></div>
+            <div class="job-info">
+                <h3>Remote Data Analyst</h3>
+                <p>Company: DataWorks</p>
+                <p>Location: Remote</p>
+            </div>
+            <button class="details-btn">View Details</button>
+        </div>
+        <div class="job-card">
+            <div class="company-logo"><img src="https://via.placeholder.com/50" alt="Company Logo"></div>
+            <div class="job-info">
+                <h3>Remote Software Engineer</h3>
+                <p>Company: DevFlow</p>
+                <p>Location: Remote</p>
+            </div>
+            <button class="details-btn">View Details</button>
+        </div>
+        <div class="job-card">
+            <div class="company-logo"><img src="https://via.placeholder.com/50" alt="Company Logo"></div>
+            <div class="job-info">
+                <h3>Remote Software Engineer</h3>
+                <p>Company: DevFlow</p>
+                <p>Location: Remote</p>
+            </div>
+            <button class="details-btn">View Details</button>
+        </div>
+        
+    </section>
+
+     Footer Section 
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Remote Jobs Hub. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal - Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
+    
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Dream Job or Hire the Best Talent</h1>
+            <p>Join our community of job seekers and recruiters. Apply for top jobs or post your own listings today.</p>
+            <div class="hero-buttons">
+                <a href="{% url 'signup' %}" class="hero-btn">I'm Looking for a Job</a>
+                <a href="{% url 'signup' %}" class="hero-btn">I'm a Recruiter</a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="hero-search">
+                <input type="text" placeholder="Search for jobs (e.g. Web Developer, Data Analyst)" class="search-input">
+                <button class="search-btn">Search Jobs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Job Listings -->
+    <section class="job-listings">
+        <h2>Featured Jobs</h2>
+        <div class="listings-grid">
+            <!-- Dummy Job Listings -->
+            <div class="job-card">
+                <h3>Frontend Developer</h3>
+                <p>Company: Tech Innovations</p>
+                <p>Location: Remote</p>
+                <button class="details-btn">View Job</button>
+            </div>
+            <div class="job-card">
+                <h3>Marketing Manager</h3>
+                <p>Company: Global Brands</p>
+                <p>Location: Lagos, Nigeria</p>
+                <button class="details-btn">View Job</button>
+            </div>
+            <div class="job-card">
+                <h3>Data Scientist</h3>
+                <p>Company: AI Experts</p>
+                <p>Location: Remote</p>
+                <button class="details-btn">View Job</button>
+            </div>
+            <div class="job-card">
+                <h3>Backend Developer</h3>
+                <p>Company: FinTech Solutions</p>
+                <p>Location: Nairobi, Kenya</p>
+                <button class="details-btn">View Job</button>
+            </div>
+            <div class="job-card">
+                <h3>Backend Developer</h3>
+                <p>Company: FinTech Solutions</p>
+                <p>Location: Nairobi, Kenya</p>
+                <button class="details-btn">View Job</button>
+            </div>
+            <div class="job-card">
+                <h3>Backend Developer</h3>
+                <p>Company: FinTech Solutions</p>
+                <p>Location: Nairobi, Kenya</p>
+                <button class="details-btn">View Job</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"This platform helped me land my dream job as a backend developer. The process was smooth and easy!"</p>
+                <h4>— John Doe, Job Seeker</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"As a recruiter, I found the best candidates for my startup in no time. Highly recommend!"</p>
+                <h4>— Jane Smith, Recruiter</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"The job listings are top-notch, and the user interface is really easy to navigate!"</p>
+                <h4>— Mike Johnson, Job Seeker</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"The job listings are top-notch, and the user interface is really easy to navigate!"</p>
+                <h4>— Mike Johnson, Job Seeker</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Job Portal. All Rights Reserved.</p>
+            <nav class="footer-nav">
+                <a href="/about/">About Us</a>
+                <a href="/contact/">Contact</a>
+                <a href="/privacy/">Privacy Policy</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
+

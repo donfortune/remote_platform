@@ -1,0 +1,160 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+}
+
+.dashboard-header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.dashboard-header nav ul li {
+    display: inline;
+}
+
+.dashboard-header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.dashboard-header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Jobs Grid Container */
+.jobs-grid-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* Each job section takes up half the width */
+.job-section {
+    width: 45%;
+}
+
+/* Demarcation Line */
+.demarcation {
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 10px;
+}
+
+/* Section Header */
+.section-header {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 1.8em;
+    color: #007bff;
+}
+
+/* Job List and Cards */
+.job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.job-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.job-card h3 {
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.job-card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Interactive Hover Effect */
+.job-card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+/* Applied jobs have a different border color */
+.job-card.applied {
+    border-left: 4px solid #28a745;
+}
+
+/* View Details Button */
+.details-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.details-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .jobs-grid-container {
+        flex-direction: column;
+    }
+
+    .job-section {
+        width: 100%;
+    }
+
+    .demarcation {
+        display: none;
+    }
+
+    .details-btn {
+        position: static;
+        margin-top: 15px;
+    }
+}

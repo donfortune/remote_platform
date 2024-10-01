@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs - Remote Jobs Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/job.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>My Jobs Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="/profile/">{{user.username}}</a></li>
+                    <li><a href="/logout/">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Container for both job sections -->
+        <div class="jobs-grid-container">
+            <!-- Viewed Jobs -->
+            <section class="job-section">
+                <div class="section-header">
+                    <h2>Jobs You've Viewed</h2>
+                </div>
+                <div class="job-list" id="viewed-jobs">
+                    <!-- Dummy Data for Viewed Jobs -->
+                    <div class="job-card">
+                        <h3>Software Engineer</h3>
+                        <p>Company: XYZ Tech Solutions</p>
+                        <p>Location: Remote</p>
+                        <p>Date Viewed: September 15, 2024</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
+                    <div class="job-card">
+                        <h3>Backend Developer</h3>
+                        <p>Company: ABC Digital</p>
+                        <p>Location: Lagos, Nigeria</p>
+                        <p>Date Viewed: September 12, 2024</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demarcation Line -->
+            <div class="demarcation"></div>
+
+            <!-- Applied Jobs -->
+            <section class="job-section">
+                <div class="section-header">
+                    <h2>Jobs You've Applied To</h2>
+                </div>
+                <div class="job-list" id="applied-jobs">
+                    <!-- Dummy Data for Applied Jobs -->
+                    <div class="job-card applied">
+                        <h3>Data Scientist</h3>
+                        <p>Company: ML Labs</p>
+                        <p>Location: Remote</p>
+                        <p>Applied on: September 10, 2024</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
+                    <div class="job-card applied">
+                        <h3>Frontend Developer</h3>
+                        <p>Company: Webify</p>
+                        <p>Location: Abuja, Nigeria</p>
+                        <p>Applied on: September 8, 2024</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
