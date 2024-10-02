@@ -1,23 +1,50 @@
-from django.shortcuts import render
-from . import models
+from django.shortcuts import render, redirect
+from .models import Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .forms import CustomUserCreationForm
 
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
+# def signup_view(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return render(request, 'login.html')    
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'signup.html', {'form': form})
+
 def signup_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return render(request, 'login.html')    
+            profile = Profile.objects.create(
+                user=user,
+                role=form.cleaned_data['role'],
+                bio=form.cleaned_data.get('bio', ''),
+                location=form.cleaned_data.get('location', ''),
+                company_name=form.cleaned_data.get('company_name', ''),
+                resume=form.cleaned_data.get('resume', None),
+            )
+            login(request, user)  # Automatically log in the user after signup
+
+            # Check the role and redirect to the appropriate dashboard
+            if profile.role == 'job_seeker':
+                return redirect('jobs_dashboard')  # URL name for the job seeker dashboard
+            elif profile.role == 'recruiter':
+                return redirect('recruiter_dashboard')  # URL name for the recruiter dashboard
+
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
+
     return render(request, 'signup.html', {'form': form})
 
 def login_view(request):
@@ -34,6 +61,9 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return render(request, 'index.html')
+
+def recruiter_dashboard(request):
+    return render(request, 'recruiters.html')
 
 @login_required
 def jobs_dashboard(request):

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,74 @@
             <nav>
                 <ul>
                     <li><a href="/create-job/">Create Job Listing</a></li>
+                    <li><a href="/logout/">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="dashboard-content">
+            
+            <section class="job-section">
+                <h2>Your Job Listings</h2>
+                <div class="job-list">
+                    
+                    <div class="job-card">
+                        <h3>Software Engineer</h3>
+                        <p>Posted: September 20, 2024</p>
+                        <p>Location: Remote</p>
+                        <button class="details-btn">View Applicants</button>
+                        <p class="views">Viewed by 35 people</p>
+                    </div>
+                    <div class="job-card">
+                        <h3>Backend Developer</h3>
+                        <p>Posted: September 15, 2024</p>
+                        <p>Location: Lagos, Nigeria</p>
+                        <button class="details-btn">View Applicants</button>
+                        <p class="views">Viewed by 25 people</p>
+                    </div>
+                </div>
+            </section>
+
+           
+            <section class="applicant-section">
+                <h2>Recent Applicants</h2>
+                <div class="applicant-list">
+                    
+                    <div class="applicant-card">
+                        <h3>John Doe</h3>
+                        <p>Applied for: Software Engineer</p>
+                        <p>Applied on: September 25, 2024</p>
+                        <button class="details-btn">View Profile</button>
+                    </div>
+                    <div class="applicant-card">
+                        <h3>Jane Smith</h3>
+                        <p>Applied for: Backend Developer</p>
+                        <p>Applied on: September 23, 2024</p>
+                        <button class="details-btn">View Profile</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/recruiters.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Recruiter Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="/create-job/">{{user.username}}</a></li>
                     <li><a href="/logout/">Logout</a></li>
                 </ul>
             </nav>
@@ -65,3 +133,4 @@
     </div>
 </body>
 </html>
+
