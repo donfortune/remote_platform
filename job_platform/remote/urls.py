@@ -11,4 +11,5 @@ urlpatterns = [
     path('recruiter_dashboard/', views.recruiter_dashboard, name='recruiter_dashboard'),\
     path('profile/<int:id>/', views.get_profile, name='get_profile'),
     path('profiles/', views.get_profiles, name='get_profiles'),
+    path('job_listing/', views.job_listing, name='job_listing'),
 ]

@@ -1,0 +1,147 @@
+/* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header nav ul li {
+    display: inline;
+    margin-left: 15px;
+}
+
+.header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Categories Grid */
+.categories-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to the next line on smaller screens */
+    justify-content: space-between; /* Spaces out the cards */
+}
+
+/* Category Card */
+.category-card {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 25px; /* Rounded corners */
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 calc(25% - 20px); /* Adjusts the width of the cards */
+    text-align: center; /* Center the text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth scaling and shadow transition */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Category Card Hover Effect */
+.category-card:hover {
+    transform: scale(1.05); /* Scale up the card slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+/* Category Card Title */
+.category-card h3 {
+    margin: 0; /* Remove margin */
+    font-size: 18px; /* Adjust font size */
+    color: #333; /* Change font color for better readability */
+}
+
+
+/* Jobs Grid Container */
+.jobs-grid-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Job Section */
+.job-section {
+    margin-bottom: 20px;
+}
+
+/* Section Header */
+.section-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.section-header h2 {
+    margin: 0;
+}
+
+/* Job List */
+.job-list {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Job Card */
+.job-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    transition: transform 0.2s;
+}
+
+.job-card:hover {
+    transform: scale(1.02);
+}
+
+/* Job Card Title */
+.job-card h4 {
+    margin: 0 0 10px;
+}
+
+/* Job Card Button */
+.details-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.details-btn:hover {
+    background-color: #0056b3;
+} */
+

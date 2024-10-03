@@ -82,7 +82,7 @@ def login_view(request):
 
             # Redirect based on the user's role
             if profile.role == 'job_seeker':
-                return redirect('jobs_dashboard')  # Job seeker dashboard URL
+                return redirect('job_listing')  # Job seeker dashboard URL
             elif profile.role == 'recruiter':
                 return redirect('recruiter_dashboard')  # Recruiter dashboard URL
             else:
@@ -125,4 +125,7 @@ def get_profiles(request):
 def get_profile(request, id):
     profile = Profile.objects.get(id=id)
     return render(request, 'profile.html', {'profile': profile})
+
+def job_listing(request):
+    return render(request, 'job_listing.html')
     
