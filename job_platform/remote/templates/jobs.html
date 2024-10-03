@@ -13,11 +13,15 @@
             <h1>My Jobs Dashboard</h1>
             <nav>
                 <ul>
+                    <li><a href="#" class="view-cv-btn">Resume</a></li>
+                    <li><a href="#" class="add-cv-btn">Add Resume</a></li>
                     <li><a href="/profile/">{{user.username}}</a></li>
                     <li><a href="/logout/">Logout</a></li>
                 </ul>
             </nav>
         </header>
+
+       
 
         <!-- Container for both job sections -->
         <div class="jobs-grid-container">
@@ -71,6 +75,55 @@
                     </div>
                 </div>
             </section>
+
+
         </div>
+
+        <!-- CV Modal -->
+    <div class="modal" id="cvModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your CV(s)</h2>
+            <div class="cv-list">
+                <div class="cv-card">
+                    <h3>Main CV</h3>
+                    <p>Uploaded on: September 15, 2024</p>
+                    <a href="/cv/view/1" class="details-btn">View CV</a>
+                </div>
+                <!-- Additional CVs can be added here -->
+            </div>
+            <button class="add-cv-btn-modal">Add New CV</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for handling modal display
+        const modal = document.getElementById("cvModal");
+        const viewCvBtn = document.querySelector(".view-cv-btn");
+        const closeModal = document.querySelector(".close");
+
+        // Open the modal
+        viewCvBtn.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+            modal.style.display = "block";
+        });
+
+        // Close the modal when the close button is clicked
+        closeModal.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        // Close the modal when clicking outside of the modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        // Add New CV button
+        document.querySelector('.add-cv-btn-modal').addEventListener('click', function() {
+            window.location.href = '/cv/upload'; // Redirect to the CV upload page
+        });
+    </script>
     </div>
 </body>

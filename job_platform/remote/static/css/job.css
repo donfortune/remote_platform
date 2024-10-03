@@ -8,7 +8,7 @@ body {
 }
 
 .dashboard-container {
-    width: 100%;
+    width: 100%; 
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -157,4 +157,77 @@ body {
         position: static;
         margin-top: 15px;
     }
+}
+
+/* Add styles for modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fff; /* White background */
+    margin: auto; /* Center horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px; /* Max width for the modal */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    text-align: center; /* Center text */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -10px; /* Adjust close button position */
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cv-list {
+    margin-top: 20px; /* Space above the CV list */
+}
+
+.cv-card {
+    padding: 10px;
+    border: 1px solid #ddd; /* Light border for CV cards */
+    border-radius: 10px; /* Rounded corners for CV cards */
+    margin-bottom: 10px; /* Space between CV cards */
+    text-align: left; /* Left-align text */
+}
+
+.details-btn {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* Text color */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px; /* Slightly rounded buttons */
+    cursor: pointer;
+    text-align: center; /* Center button text */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.add-cv-btn-modal {
+    background-color: #28a745; /* Green color for add button */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px; /* Slightly rounded button */
+    cursor: pointer;
+    margin-top: 15px; /* Space above the button */
 }
