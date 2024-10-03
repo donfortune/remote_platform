@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.user.username }}'s Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .profile-details {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            line-height: 1.6;
+        }
+
+        .profile-details p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .profile-details strong {
+            color: #007bff;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .edit-profile {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>{{ profile.user.username }}'s Profile</h1>
+        
+        <div class="profile-details">
+            <p><strong>Bio:</strong> {{ profile.bio|default:"No bio provided." }}</p>
+            <p><strong>Location:</strong> {{ profile.location|default:"No location provided." }}</p>
+            <p><strong>Birth Date:</strong> {{ profile.birth_date|date:"F j, Y" }}</p>
+            <p><strong>Role:</strong> {{ profile.get_role_display }}</p>
+            
+            {% if profile.role == 'recruiter' %}
+                <p><strong>Company Name:</strong> {{ profile.company_name|default:"Not provided." }}</p>
+            {% elif profile.role == 'job_seeker' %}
+                {% if profile.resume %}
+                    <p><strong>Resume:</strong> <a href="{{ profile.resume.url }}" download>Download Resume</a></p>
+                {% else %}
+                    <p><strong>Resume:</strong> Not uploaded.</p>
+                {% endif %}
+            {% endif %}
+        </div>
+        
+        <div class="edit-profile">
+            <a href="#">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

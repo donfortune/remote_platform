@@ -8,5 +8,7 @@ urlpatterns = [
     path('signup_recruiter/', views.signup_recruiter_view, name='signup_recruiter'),
     path('jobs_dashboard/', views.jobs_dashboard, name='jobs_dashboard'),
     path('logout/', views.logout_view, name='logout'),
-    path('recruiter_dashboard/', views.recruiter_dashboard, name='recruiter_dashboard'),
+    path('recruiter_dashboard/', views.recruiter_dashboard, name='recruiter_dashboard'),\
+    path('profile/<int:id>/', views.get_profile, name='get_profile'),
+    path('profiles/', views.get_profiles, name='get_profiles'),
 ]

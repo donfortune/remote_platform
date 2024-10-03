@@ -116,4 +116,13 @@ def recruiter_dashboard(request):
 @login_required
 def jobs_dashboard(request):
     return render(request, 'jobs.html')
+
+def get_profiles(request):
+    profiles = Profile.objects.all()
+    return render(request, 'profiles.html', {'profiles': profiles})
+
+@login_required
+def get_profile(request, id):
+    profile = Profile.objects.get(id=id)
+    return render(request, 'profile.html', {'profile': profile})
     
