@@ -62,6 +62,12 @@
                         <p>Location: Remote</p>
                         <button class="details-btn">View Details</button>
                     </div>
+                    <div class="job-card">
+                        <h4>Backend Developer</h4>
+                        <p>Company: XYZ Tech Solutions</p>
+                        <p>Location: Remote</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
                 </div>
             </section>
 
@@ -80,12 +86,31 @@
                         <p>Location: Lagos, Nigeria</p>
                         <button class="details-btn">View Details</button>
                     </div>
+                    <div class="job-card">
+                        <h4>Data Scientist</h4>
+                        <p>Company: ML Labs</p>
+                        <p>Location: Lagos, Nigeria</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
+                    
                 </div>
             </section>
 
             <section id="design">
                 <h3>Design</h3>
                 <div class="job-list">
+                    <div class="job-card">
+                        <h4>UI/UX Designer</h4>
+                        <p>Company: Creative Minds</p>
+                        <p>Location: Abuja, Nigeria</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
+                    <div class="job-card">
+                        <h4>UI/UX Designer</h4>
+                        <p>Company: Creative Minds</p>
+                        <p>Location: Abuja, Nigeria</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
                     <div class="job-card">
                         <h4>UI/UX Designer</h4>
                         <p>Company: Creative Minds</p>
@@ -104,9 +129,36 @@
                         <p>Location: Remote</p>
                         <button class="details-btn">View Details</button>
                     </div>
+                    <div class="job-card">
+                        <h4>UI/UX Designer</h4>
+                        <p>Company: Creative Minds</p>
+                        <p>Location: Abuja, Nigeria</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
+                    <div class="job-card">
+                        <h4>UI/UX Designer</h4>
+                        <p>Company: Creative Minds</p>
+                        <p>Location: Abuja, Nigeria</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
                 </div>
+                
             </section>
         </div>
     </div>
+    <script>
+        // JavaScript to handle category clicks
+        document.querySelectorAll('.category-card a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default anchor click behavior
+
+                const category = this.getAttribute('data-category');
+                // Redirect to the jobs listing page for the selected category
+                // Adjust the URL as needed for your application
+                window.location.href = `/jobs/${category}/`; // Replace with your route
+            });
+        });
+
+    </script>
 </body>
 </html>

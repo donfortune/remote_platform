@@ -48,100 +48,145 @@ body {
 /* Categories Grid */
 .categories-grid {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping to the next line on smaller screens */
-    justify-content: space-between; /* Spaces out the cards */
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 /* Category Card */
 .category-card {
     background-color: #ffffff;
     border: 1px solid #ced4da;
-    border-radius: 25px; /* Rounded corners */
+    border-radius: 25px;
     padding: 20px;
     margin: 10px;
-    flex: 1 1 calc(25% - 20px); /* Adjusts the width of the cards */
-    text-align: center; /* Center the text */
+    flex: 1 1 calc(25% - 20px);
+    text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s; /* Smooth scaling and shadow transition */
-    text-decoration: none; /* Remove underline */
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Category Card Hover Effect */
+.category-card a {
+    text-decoration: none; /* Make sure underline is removed */
+    color: #333; /* Default text color */
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Hover Effects */
 .category-card:hover {
-    transform: scale(1.05); /* Scale up the card slightly */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.category-card a:hover {
+    color: #007bff;
+    font-weight: bold;
 }
 
 /* Category Card Title */
 .category-card h3 {
-    margin: 0; /* Remove margin */
-    font-size: 18px; /* Adjust font size */
-    color: #333; /* Change font color for better readability */
-}
-
-
-/* Jobs Grid Container */
-.jobs-grid-container {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Job Section */
-.job-section {
-    margin-bottom: 20px;
-}
-
-/* Section Header */
-.section-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border-radius: 5px 5px 0 0;
-}
-
-.section-header h2 {
     margin: 0;
+    font-size: 18px;
+    color: #333;
 }
 
-/* Job List */
+/* General container for the job listings */
+.jobs-grid-container {
+    margin-top: 30px;
+}
+
+/* Section header styling */
+.jobs-grid-container section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+    border-bottom: 2px solid #f0f0f0; /* Adding a subtle underline to section headers */
+    padding-bottom: 5px;
+}
+
+/* Job List - Display cards in a row with flexible layout */
 .job-list {
-    background-color: white;
-    padding: 15px;
-    border: 1px solid #dee2e6;
-    border-radius: 0 0 5px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px; /* Space between job cards */
+    margin-bottom: 40px; /* More margin to separate sections */
 }
 
-/* Job Card */
+/* Job Card - Clean, modern design */
 .job-card {
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 10px;
-    transition: transform 0.2s;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0; /* Light border for a modern look */
+    border-radius: 20px; /* More rounded cards */
+    padding: 20px; /* Slightly reduce padding to fit smaller cards */
+    width: calc(30% - 20px); /* Reduce card size for a smaller, more compact look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Softer shadow for a cleaner look */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    text-align: left;
+    position: relative; /* For button positioning */
 }
 
+/* Hover effect - Elevate the card slightly */
 .job-card:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px); /* Lift card slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Increase shadow depth on hover */
 }
 
-/* Job Card Title */
+/* Job title styling */
 .job-card h4 {
-    margin: 0 0 10px;
+    font-size: 16px; /* Slightly reduce font size */
+    margin-bottom: 10px;
+    color: #222;
+    font-weight: 600;
 }
 
-/* Job Card Button */
+/* Job details (company, location) */
+.job-card p {
+    margin: 6px 0;
+    font-size: 13px; /* Reduce text size for a smaller card */
+    color: #666;
+}
+
+/* Add more space between the location and the button */
+.job-card p + p {
+    margin-bottom: 40px; /* Extra space between job details and button */
+}
+
+/* View Details button */
 .details-btn {
     background-color: #007bff;
-    color: white;
+    color: #fff;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 25px; /* More rounded buttons */
+    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+    position: absolute; /* Stick the button to the bottom */
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
+/* Button hover effect */
 .details-btn:hover {
     background-color: #0056b3;
-} */
+}
 
+/* Media query for tablets (2 cards per row) */
+@media (max-width: 768px) {
+    .job-card {
+        width: calc(45% - 20px); /* 2 cards per row */
+    }
+}
+
+/* Media query for mobile devices (1 card per row) */
+@media (max-width: 480px) {
+    .job-card {
+        width: 100%; /* Full width on mobile */
+        margin-bottom: 20px;
+    }
+}
