@@ -147,55 +147,92 @@ body {
     background-color: #0056b3;
 }
 
-/* Modal styling */
+/* Modal Styling */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
-    padding-top: 100px;
+    z-index: 1000;
+    padding-top: 0; /* Removed top padding to ensure full vertical centering */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers the modal content vertically */
 }
 
+/* Modal Content Styling */
 .modal-content {
     background-color: #fff;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-    border-radius: 10px;
+    padding: 25px;
+    border: none;
+    width: 50%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
+/* Close Button Styling */
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #000;
     text-decoration: none;
-    cursor: pointer;
 }
 
+/* Modal Button Styling */
 .modal-btn {
     background-color: #28a745;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .modal-btn:hover {
     background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Textbox Styling */
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Rounded edges for the input fields */
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Modal Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

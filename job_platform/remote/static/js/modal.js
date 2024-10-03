@@ -1,22 +1,31 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var modal = document.getElementById("job-modal");
-    var btn = document.getElementById("add-job-btn");
-    var span = document.getElementsByClassName("close")[0];
+// modal.js
 
-    // When the user clicks the button, open the modal
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
+// Get modal elements
+const modal = document.getElementById("job-modal");
+const btn = document.getElementById("add-job-btn");
+const span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
+// Open the modal when the "Add Job" button is clicked
+btn.onclick = function() {
+    console.log("Add Job button clicked");
+    modal.style.display = "flex"; // Change to 'flex' to maintain centering
+}
+
+// Close the modal when the "x" button is clicked
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close the modal when clicking outside of the modal content
+window.onclick = function(event) {
+    if (event.target === modal) {
         modal.style.display = "none";
     }
+}
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+// Close the modal when pressing the "Esc" key
+window.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        modal.style.display = "none";
     }
 });
