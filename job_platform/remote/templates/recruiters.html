@@ -74,6 +74,7 @@
     <title>Recruiter Dashboard</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/recruiters.css' %}">
+    <script defer src="{% static 'js/modal.js' %}"></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -81,18 +82,23 @@
             <h1>Recruiter Dashboard</h1>
             <nav>
                 <ul>
-                    <li><a href="/create-job/">{{user.username}}</a></li>
+                    <li><a href="/create-job/">Create Job Listing</a></li>
                     <li><a href="/logout/">Logout</a></li>
                 </ul>
             </nav>
         </header>
 
+        <!-- Add Job Button -->
+        <div class="add-job-container">
+            <button id="add-job-btn" class="add-job-btn">+ Add Job</button>
+        </div>
+
+        <!-- Job Listings Section -->
         <div class="dashboard-content">
-            <!-- Job Listings Section -->
             <section class="job-section">
                 <h2>Your Job Listings</h2>
                 <div class="job-list">
-                    <!-- Dummy data for job listings -->
+                    <!-- Example Job Listings -->
                     <div class="job-card">
                         <h3>Software Engineer</h3>
                         <p>Posted: September 20, 2024</p>
@@ -114,7 +120,6 @@
             <section class="applicant-section">
                 <h2>Recent Applicants</h2>
                 <div class="applicant-list">
-                    <!-- Dummy data for applicants -->
                     <div class="applicant-card">
                         <h3>John Doe</h3>
                         <p>Applied for: Software Engineer</p>
@@ -130,7 +135,28 @@
                 </div>
             </section>
         </div>
+
+        <!-- Modal for Adding Job -->
+        <div id="job-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Create Job Listing</h2>
+                <form action="/create-job/" method="POST">
+                    <div class="input-group">
+                        <label for="title">Job Title</label>
+                        <input type="text" id="title" name="title" placeholder="Job Title" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" placeholder="Location" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" placeholder="Job Description" required></textarea>
+                    </div>
+                    <button type="submit" class="modal-btn">Submit Job</button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
-</html>
-
