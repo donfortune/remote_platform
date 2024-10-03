@@ -99,11 +99,24 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="{% static 'js/script.js' %}"></script>
-    
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/">Job Portal</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/login/">Login</a></li>
+                <li><a href="#hero-section">Looking for a Job</a></li>
+                <li><a href="#hero-section">Looking to Volunteer</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero-section" class="hero">
         <div class="hero-content">
             <h1>Find Your Dream Job or Hire the Best Talent</h1>
             <p>Join our community of job seekers and recruiters. Apply for top jobs or post your own listings today.</p>
@@ -124,7 +137,7 @@
     <section class="job-listings">
         <h2>Featured Jobs</h2>
         <div class="listings-grid">
-            <!-- Dummy Job Listings -->
+            <!-- Job Listings (example entries) -->
             <div class="job-card">
                 <h3>Frontend Developer</h3>
                 <p>Company: Tech Innovations</p>
@@ -143,24 +156,6 @@
                 <p>Location: Remote</p>
                 <button class="details-btn">View Job</button>
             </div>
-            <div class="job-card">
-                <h3>Backend Developer</h3>
-                <p>Company: FinTech Solutions</p>
-                <p>Location: Nairobi, Kenya</p>
-                <button class="details-btn">View Job</button>
-            </div>
-            <div class="job-card">
-                <h3>Backend Developer</h3>
-                <p>Company: FinTech Solutions</p>
-                <p>Location: Nairobi, Kenya</p>
-                <button class="details-btn">View Job</button>
-            </div>
-            <div class="job-card">
-                <h3>Backend Developer</h3>
-                <p>Company: FinTech Solutions</p>
-                <p>Location: Nairobi, Kenya</p>
-                <button class="details-btn">View Job</button>
-            </div>
         </div>
     </section>
 
@@ -175,14 +170,6 @@
             <div class="testimonial-card">
                 <p>"As a recruiter, I found the best candidates for my startup in no time. Highly recommend!"</p>
                 <h4>— Jane Smith, Recruiter</h4>
-            </div>
-            <div class="testimonial-card">
-                <p>"The job listings are top-notch, and the user interface is really easy to navigate!"</p>
-                <h4>— Mike Johnson, Job Seeker</h4>
-            </div>
-            <div class="testimonial-card">
-                <p>"The job listings are top-notch, and the user interface is really easy to navigate!"</p>
-                <h4>— Mike Johnson, Job Seeker</h4>
             </div>
         </div>
     </section>
@@ -200,4 +187,3 @@
     </footer>
 </body>
 </html>
-

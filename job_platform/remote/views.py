@@ -76,10 +76,22 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return render(request, 'jobs.html')
+
+            # Get the user's profile to check their role
+            profile = Profile.objects.get(user=user)
+
+            # Redirect based on the user's role
+            if profile.role == 'job_seeker':
+                return redirect('jobs_dashboard')  # Job seeker dashboard URL
+            elif profile.role == 'recruiter':
+                return redirect('recruiter_dashboard')  # Recruiter dashboard URL
+            else:
+                return redirect('default_dashboard')  # Default or fallback dashboard
     else:
         form = AuthenticationForm()
+
     return render(request, 'login.html', {'form': form})
+
 
 def login_recruiter_view(request):
     if request.method == 'POST':
