@@ -41,9 +41,10 @@ def signup_view(request):
 
             # Check the role and redirect to the appropriate dashboard
             if profile.role == 'job_seeker':
-                return redirect('jobs_dashboard')  # URL name for the job seeker dashboard
+                return redirect('login')  
             elif profile.role == 'recruiter':
-                return redirect('recruiter_dashboard')  # URL name for the recruiter dashboard
+                return redirect('login')
+                
              
 
     else:
