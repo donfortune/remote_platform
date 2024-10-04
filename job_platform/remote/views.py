@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import CustomUserCreationForm, RecruiterEditForm, UserEditForm
+from django.http import HttpResponse
 
 
 
@@ -117,7 +118,8 @@ def recruiter_dashboard(request):
 
 @login_required
 def jobs_dashboard(request):
-    return render(request, 'jobs.html')
+    profile = Profile.objects.get(user=request.user)
+    return render(request, 'jobs.html', {'profile': profile})
 
 def get_profiles(request):
     profiles = Profile.objects.all()
@@ -154,3 +156,22 @@ def edit_user_profile(request, id):
         form = UserEditForm(instance=user)
 
     return render(request, 'edit_profile.html', {'form': form})
+
+def view_cv(request, id):
+    profile = Profile.objects.get(id=id)
+    if profile.resume:
+        # Serve the file as an attachment
+        response = HttpResponse(profile.resume, content_type='application/pdf')
+        response['Content-Disposition'] = f'inline; filename="{profile.resume.name}"'
+        return response
+    else:
+        return HttpResponse("No CV found.", status=404)
+
+
+def add_cv(request, id):
+    profile = Profile.objects.get(id=id)
+    if request.method == 'POST':
+        profile.resume = request.FILES['resume']
+        profile.save()
+        return redirect('get_profile', id=id)
+    return render(request, 'add_cv.html', {'profile': profile})

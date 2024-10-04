@@ -80,21 +80,28 @@
         </div>
 
         <!-- CV Modal -->
-    <div class="modal" id="cvModal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Your CV(s)</h2>
-            <div class="cv-list">
-                <div class="cv-card">
-                    <h3>Main CV</h3>
-                    <p>Uploaded on: September 15, 2024</p>
-                    <a href="/cv/view/1" class="details-btn">View CV</a>
+        <div class="modal" id="cvModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Your CV(s)</h2>
+                <div class="cv-list">
+                    {% if profile.resume %}
+                        <div class="cv-card">
+                            <h3>{{profile.resume.name}}</h3>
+                            <p>Uploaded on: {{ profile.resume.uploaded_at|date:"F d, Y" }}</p>
+                            <!-- View CV button linking to the correct CV URL -->
+                            <a href="{{ profile.resume.url }}" target="_blank" class="details-btn">View CV</a>
+                        </div>
+                    {% else %}
+                        <p>No CV uploaded yet.</p>
+                    {% endif %}
+                    <!-- You can add logic here for displaying additional CVs if needed -->
                 </div>
-                <!-- Additional CVs can be added here -->
+                <a href="{% url 'add_cv' profile.id %}" class="add-cv-btn-modal">Add New CV</a>
+                
             </div>
-            <button class="add-cv-btn-modal">Add New CV</button>
         </div>
-    </div>
+        
 
     <script>
         // JavaScript for handling modal display
