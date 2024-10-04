@@ -91,7 +91,11 @@
         </div>
         
         <div class="edit-profile">
-            <a href="#">Edit Profile</a>
+            {% if profile.role == 'recruiter' %}
+                <a href="{% url 'edit_recruiter_profile' profile.id %}">Edit Recruiter Profile</a>
+            {% elif profile.role == 'job_seeker' %}
+                <a href="{% url 'edit_user_profile' profile.id %}">Edit Job Seeker Profile</a>
+            {% endif %}
         </div>
     </div>
 </body>

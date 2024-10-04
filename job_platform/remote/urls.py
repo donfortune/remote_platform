@@ -12,4 +12,6 @@ urlpatterns = [
     path('profile/<int:id>/', views.get_profile, name='get_profile'),
     path('profiles/', views.get_profiles, name='get_profiles'),
     path('job_listing/', views.job_listing, name='job_listing'),
+    path('edit_recruiter_profile/<int:id>/', views.edit_recruiter_profile, name='edit_recruiter_profile'),
+    path('edit_user_profile/<int:id>/', views.edit_user_profile, name='edit_user_profile'),
 ]

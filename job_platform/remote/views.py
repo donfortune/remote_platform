@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Profile
+from .models import Profile, User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, RecruiterEditForm, UserEditForm
+
 
 
 # Create your views here.
@@ -128,4 +129,27 @@ def get_profile(request, id):
 
 def job_listing(request):
     return render(request, 'job_listing.html')
+
+def edit_recruiter_profile(request, id):
+    profile = Profile.objects.get(id=id)
+    if request.method == 'POST':
+        form = RecruiterEditForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('get_profile', id=id)
+    else:
+        form = RecruiterEditForm(instance=profile)
+
+    return render(request, 'edit_profile.html', {'form': form}) 
     
+def edit_user_profile(request, id):
+    user = User.objects.get(id=id)
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('get_profile', id=id)
+    else:
+        form = UserEditForm(instance=user)
+
+    return render(request, 'edit_profile.html', {'form': form})

@@ -25,3 +25,18 @@ class CustomUserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class RecruiterEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+        widgets = {
+            'birth_date': forms.SelectDateWidget(years=range(1900, 2020)),
+        }
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'
+        exclude = ['password', 'last_login', 'is_superuser', 'groups', 'user_permissions', 'is_staff', 'is_active', 'date_joined']
