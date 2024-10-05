@@ -1,175 +1,227 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remote Jobs Hub</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script defer src="{% static 'js/script.js' %}"></script>
-</head>
-<body>
-    Header / Navbar 
-    <header>
-        <nav class="navbar">
-            <div class="logo">Remote Jobs Hub</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Job Listings</a></li>
-                <li><a href="#">Post a Job</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="{% url 'login' %}" class="cta">Login</a></li>
-                <li><a href="{% url 'signup' %}" class="cta">Sign Up</a></li>
-            </ul>
-        </nav>
-    </header>
-
-     Hero Section 
-    <section class="hero">
-        <h1>Find Remote Jobs that Match Your Passion</h1>
-        <p>Connecting ALX grads and beyond to opportunities worldwide.</p>
-        <div class="search-bar">
-            <input type="text" placeholder="Search for jobs (e.g. Web Developer, Data Analyst)">
-            <button class="search-btn">Search</button>
-        </div>
-    </section>
-
-     Job Listings Section 
-    <section class="job-listings">
-        <div class="job-card">
-            <div class="company-logo"><img src="https://via.placeholder.com/50" alt="Company Logo"></div>
-            <div class="job-info">
-                <h3>Remote Web Developer</h3>
-                <p>Company: AwesomeTech Inc.</p>
-                <p>Location: Remote</p>
-            </div>
-            <button class="details-btn">View Details</button>
-        </div>
-        <div class="job-card">
-            <div class="company-logo"><img src="https://via.placeholder.com/50" alt="Company Logo"></div>
-            <div class="job-info">
-                <h3>Remote Data Analyst</h3>
-                <p>Company: DataWorks</p>
-                <p>Location: Remote</p>
-            </div>
-            <button class="details-btn">View Details</button>
-        </div>
-        <div class="job-card">
-            <div class="company-logo"><img src="https://via.placeholder.com/50" alt="Company Logo"></div>
-            <div class="job-info">
-                <h3>Remote Software Engineer</h3>
-                <p>Company: DevFlow</p>
-                <p>Location: Remote</p>
-            </div>
-            <button class="details-btn">View Details</button>
-        </div>
-        <div class="job-card">
-            <div class="company-logo"><img src="https://via.placeholder.com/50" alt="Company Logo"></div>
-            <div class="job-info">
-                <h3>Remote Software Engineer</h3>
-                <p>Company: DevFlow</p>
-                <p>Location: Remote</p>
-            </div>
-            <button class="details-btn">View Details</button>
-        </div>
-        
-    </section>
-
-     Footer Section 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Remote Jobs Hub. All Rights Reserved.</p>
-            <div class="footer-links">
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Contact</a>
-            </div>
-        </div>
-    </footer>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Portal - Welcome</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script defer src="{% static 'js/script.js' %}"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            background-color: #f8f9fa;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero .hero-btn {
+            margin: 10px;
+            padding: 10px 30px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .hero .hero-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .search-input {
+            width: 60%;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+        }
+
+        .job-card {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .job-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .job-card button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .job-card button:hover {
+            background-color: #0056b3;
+        }
+
+        .testimonials {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+
+        .testimonial-card h4 {
+            margin-top: 15px;
+            color: #333;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+
     <!-- Navigation Bar -->
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <a href="/">Job Portal</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="/">Job Portal <i class="fa-solid fa-briefcase"></i></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login/"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#hero-section"><i class="fa-solid fa-magnifying-glass"></i> Looking for a Job</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#hero-section"><i class="fa-solid fa-hands-helping"></i> Looking to Volunteer</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="/login/">Login</a></li>
-                <li><a href="#hero-section">Looking for a Job</a></li>
-                <li><a href="#hero-section">Looking to Volunteer</a></li>
-            </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section id="hero-section" class="hero">
-        <div class="hero-content">
-            <h1>Find Your Dream Job or Hire the Best Talent</h1>
+        <div class="container">
+            <h1>Find Your Dream Job or Hire the Best Talent <i class="fa-solid fa-globe"></i></h1>
             <p>Join our community of job seekers and recruiters. Apply for top jobs or post your own listings today.</p>
             <div class="hero-buttons">
-                <a href="{% url 'signup' %}" class="hero-btn">I'm Looking for a Job</a>
-                <a href="{% url 'signup_recruiter' %}" class="hero-btn">I'm a Recruiter</a>
+                <a href="{% url 'signup' %}" class="hero-btn"><i class="fa-solid fa-user"></i> I'm Looking for a Job</a>
+                <a href="{% url 'signup_recruiter' %}" class="hero-btn"><i class="fa-solid fa-user-tie"></i> I'm a Recruiter</a>
             </div>
 
             <!-- Search Bar -->
             <div class="hero-search">
                 <input type="text" placeholder="Search for jobs (e.g. Web Developer, Data Analyst)" class="search-input">
-                <button class="search-btn">Search Jobs</button>
+                <button class="search-btn btn btn-primary"><i class="fa-solid fa-search"></i> Search Jobs</button>
             </div>
         </div>
     </section>
 
     <!-- Featured Job Listings -->
-    <section class="job-listings">
-        <h2>Featured Jobs</h2>
-        <div class="listings-grid">
-            <!-- Job Listings (example entries) -->
-            <div class="job-card">
-                <h3>Frontend Developer</h3>
-                <p>Company: Tech Innovations</p>
-                <p>Location: Remote</p>
-                <button class="details-btn">View Job</button>
-            </div>
-            <div class="job-card">
-                <h3>Marketing Manager</h3>
-                <p>Company: Global Brands</p>
-                <p>Location: Lagos, Nigeria</p>
-                <button class="details-btn">View Job</button>
-            </div>
-            <div class="job-card">
-                <h3>Data Scientist</h3>
-                <p>Company: AI Experts</p>
-                <p>Location: Remote</p>
-                <button class="details-btn">View Job</button>
+    <section class="job-listings py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Featured Jobs <i class="fa-solid fa-briefcase"></i></h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="job-card">
+                        <h3>Frontend Developer <i class="fa-solid fa-laptop-code"></i></h3>
+                        <p>Company: Tech Innovations</p>
+                        <p>Location: Remote</p>
+                        <button class="btn btn-primary"><i class="fa-solid fa-eye"></i> View Job</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="job-card">
+                        <h3>Marketing Manager <i class="fa-solid fa-bullhorn"></i></h3>
+                        <p>Company: Global Brands</p>
+                        <p>Location: Lagos, Nigeria</p>
+                        <p>Date Posted: </p>
+                        <button class="btn btn-primary"><i class="fa-solid fa-eye"></i> View Job</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="job-card">
+                        <h3> Data Scientist <i class="fa-solid fa-database"></i></h3>
+                        <p>Company: AI Experts</p>
+                        <p>Location: Remote</p>
+                        <button class="btn btn-primary"><i class="fa-solid fa-eye"></i> View Job</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
-        <h2>What Our Users Say</h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p>"This platform helped me land my dream job as a backend developer. The process was smooth and easy!"</p>
-                <h4>— John Doe, Job Seeker</h4>
-            </div>
-            <div class="testimonial-card">
-                <p>"As a recruiter, I found the best candidates for my startup in no time. Highly recommend!"</p>
-                <h4>— Jane Smith, Recruiter</h4>
+    <section class="testimonials my-5">
+        <div class="container">
+            <h2 class="text-center">What Our Users Say <i class="fa-solid fa-comments"></i></h2>
+
+            <!-- Bootstrap Carousel -->
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+
+                    <!-- First Testimonial -->
+                    <div class="carousel-item active">
+                        <div class="testimonial-card text-center">
+                            <p>"This platform helped me land my dream job as a backend developer. The process was smooth and easy!"</p>
+                            <h4>— John Doe, Job Seeker</h4>
+                        </div>
+                    </div>
+
+                    <!-- Second Testimonial -->
+                    <div class="carousel-item">
+                        <div class="testimonial-card text-center">
+                            <p>"As a recruiter, I found the best candidates for my startup in no time. Highly recommend!"</p>
+                            <h4>— Jane Smith, Recruiter</h4>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     </section>
@@ -179,11 +231,12 @@
         <div class="footer-content">
             <p>&copy; 2024 Job Portal. All Rights Reserved.</p>
             <nav class="footer-nav">
-                <a href="/about/">About Us</a>
-                <a href="/contact/">Contact</a>
-                <a href="/privacy/">Privacy Policy</a>
+                <a href="/about/"><i class="fa-solid fa-info-circle"></i> About Us</a>
+                <a href="/contact/"><i class="fa-solid fa-envelope"></i> Contact</a>
+                <a href="/terms/"><i class="fa-solid fa-file-contract"></i> Terms & Conditions</a>
             </nav>
         </div>
     </footer>
+
 </body>
 </html>

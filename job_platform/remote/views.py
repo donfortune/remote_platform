@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, User
+from .models import Profile, User, Job
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -175,3 +175,11 @@ def add_cv(request, id):
         profile.save()
         return redirect('get_profile', id=id)
     return render(request, 'add_cv.html', {'profile': profile})
+
+def get_jobs(request):
+    jobs = Job.objects.all()
+    return render(request, 'jobs.html', {'jobs': jobs})
+
+def get_job(request, id):
+    job = Job.objects.get(id=id)
+    return render(request, 'job.html', {'job': job})
