@@ -126,7 +126,7 @@
                             <a class="nav-link" href="#hero-section"><i class="fa-solid fa-magnifying-glass"></i> Looking for a Job</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#hero-section"><i class="fa-solid fa-hands-helping"></i> Looking to Volunteer</a>
+                            <a class="nav-link" href="#hero-section"><i class="fa-solid fa-hands-helping"></i> Looking to Hire</a>
                         </li>
                     </ul>
                 </div>
@@ -157,31 +157,16 @@
         <div class="container">
             <h2 class="text-center mb-4">Featured Jobs <i class="fa-solid fa-briefcase"></i></h2>
             <div class="row">
+                {% for job in featured_jobs %}
                 <div class="col-md-4">
                     <div class="job-card">
-                        <h3>Frontend Developer <i class="fa-solid fa-laptop-code"></i></h3>
-                        <p>Company: Tech Innovations</p>
-                        <p>Location: Remote</p>
+                        <h3>{{ job.title }} <i class="fa-solid fa-laptop-code"></i></h3>
+                        <p>{{ job.company }}</p>
+                        <p>{{ job.location }}</p>
                         <button class="btn btn-primary"><i class="fa-solid fa-eye"></i> View Job</button>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="job-card">
-                        <h3>Marketing Manager <i class="fa-solid fa-bullhorn"></i></h3>
-                        <p>Company: Global Brands</p>
-                        <p>Location: Lagos, Nigeria</p>
-                        <p>Date Posted: </p>
-                        <button class="btn btn-primary"><i class="fa-solid fa-eye"></i> View Job</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="job-card">
-                        <h3> Data Scientist <i class="fa-solid fa-database"></i></h3>
-                        <p>Company: AI Experts</p>
-                        <p>Location: Remote</p>
-                        <button class="btn btn-primary"><i class="fa-solid fa-eye"></i> View Job</button>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

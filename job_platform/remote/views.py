@@ -9,8 +9,18 @@ from django.http import HttpResponse
 
 
 # Create your views here.
+# def index(request):
+#     featured_jobs = Job.objects.filter(featured=True) 
+#     return render(request, 'index.html', {'jobs': featured_jobs})
+
 def index(request):
-    return render(request, 'index.html')
+    jobs = Job.objects.all()
+    featured_jobs = Job.objects.filter(featured=True)
+    context = {
+        'jobs': jobs,
+        'featured_jobs': featured_jobs
+    }
+    return render(request, 'index.html', context)
 
 # def signup_view(request):
 #     if request.method == 'POST':
@@ -178,8 +188,10 @@ def add_cv(request, id):
 
 def get_jobs(request):
     jobs = Job.objects.all()
-    return render(request, 'jobs.html', {'jobs': jobs})
+    print(f'Jobs retrieved: {jobs}') 
+    return render(request, 'index.html', {'jobs': jobs})
 
 def get_job(request, id):
-    job = Job.objects.get(id=id)
-    return render(request, 'job.html', {'job': job})
+    job = Job.objects.get(id=id) 
+    print(job)
+    return render(request, 'index.html', {'job': job})

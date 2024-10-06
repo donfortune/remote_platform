@@ -34,6 +34,7 @@ class Job(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     recruiter = models.ForeignKey(Profile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+    featured = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
