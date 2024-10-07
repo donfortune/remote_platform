@@ -139,15 +139,17 @@
         <div class="container">
             <h1>Find Your Dream Job or Hire the Best Talent <i class="fa-solid fa-globe"></i></h1>
             <p>Join our community of job seekers and recruiters. Apply for top jobs or post your own listings today.</p>
-            <div class="hero-buttons">
-                <a href="{% url 'signup' %}" class="hero-btn"><i class="fa-solid fa-user"></i> I'm Looking for a Job</a>
-                <a href="{% url 'signup_recruiter' %}" class="hero-btn"><i class="fa-solid fa-user-tie"></i> I'm a Recruiter</a>
-            </div>
+           
 
             <!-- Search Bar -->
             <div class="hero-search">
                 <input type="text" placeholder="Search for jobs (e.g. Web Developer, Data Analyst)" class="search-input">
                 <button class="search-btn btn btn-primary"><i class="fa-solid fa-search"></i> Search Jobs</button>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="{% url 'signup' %}" class="hero-btn"><i class="fa-solid fa-user"></i> I'm Looking for a Job</a>
+                <a href="{% url 'signup_recruiter' %}" class="hero-btn"><i class="fa-solid fa-user-tie"></i> I'm a Recruiter</a>
             </div>
         </div>
     </section>

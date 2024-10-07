@@ -63,25 +63,18 @@
                     <div class="card mb-3">
                         
                         <div class="card-body">
-                            <h5 class="card-title">{{job.title}}Software Engineer</h5>
-                            <p class="card-text">{{job.company}}Company: Tech Innovations</p>
-                            <p class="card-text">{{job.location}}Location: Lagos, Nigeria</p>
+                            <h5 class="card-title">{{job.title}}</h5>
+                            <p class="card-text">{{job.company}}</p>
+                            <p class="card-text">Location: {{job.location}}</p>
                             <button class="btn btn-outline-primary">View Details</button>
                         </div>
                         
                     </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Backend Developer</h5>
-                            <p class="card-text">Company: XYZ Tech Solutions</p>
-                            <p class="card-text">Location: Remote</p>
-                            <button class="btn btn-outline-primary">View Details</button>
-                        </div>
-                    </div>
+                    
                     {% endfor %}
                 </section>
 
-                <section class="col-md-6 mb-3">
+                <section class="col-md-6 mb-3" style="display: none;">
                     <h3 class="text-primary">Data Science</h3>
                     <div class="card mb-3">
                         <div class="card-body">
