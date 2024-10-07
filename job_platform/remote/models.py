@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 # Create your models here.
 ROLE_CHOICES = (
     ('recruiter', 'Recruiter'),
     ('job_seeker', 'Job Seeker'),
 )
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -22,6 +24,8 @@ class Profile(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    slug = models.SlugField(unique=True, default=uuid.uuid1)
+
 
     def __str__(self):
         return self.name
@@ -35,6 +39,7 @@ class Job(models.Model):
     recruiter = models.ForeignKey(Profile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     featured = models.BooleanField(default=False)
+  
 
     def __str__(self):
         return self.title
