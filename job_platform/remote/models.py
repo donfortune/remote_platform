@@ -24,7 +24,7 @@ class Profile(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    slug = models.SlugField(unique=True, default=uuid.uuid1)
+    slug = models.SlugField(unique=True)
 
 
     def __str__(self):

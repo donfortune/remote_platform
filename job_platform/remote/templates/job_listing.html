@@ -59,13 +59,16 @@
             <div class="row mb-4">
                 <section class="col-md-6 mb-3">
                     <h3 class="text-primary">Software Development</h3>
+                    {% for job in software_jobs %}
                     <div class="card mb-3">
+                        
                         <div class="card-body">
-                            <h5 class="card-title">Software Engineer</h5>
-                            <p class="card-text">Company: Tech Innovations</p>
-                            <p class="card-text">Location: Lagos, Nigeria</p>
+                            <h5 class="card-title">{{job.title}}Software Engineer</h5>
+                            <p class="card-text">{{job.company}}Company: Tech Innovations</p>
+                            <p class="card-text">{{job.location}}Location: Lagos, Nigeria</p>
                             <button class="btn btn-outline-primary">View Details</button>
                         </div>
+                        
                     </div>
                     <div class="card mb-3">
                         <div class="card-body">
@@ -75,6 +78,7 @@
                             <button class="btn btn-outline-primary">View Details</button>
                         </div>
                     </div>
+                    {% endfor %}
                 </section>
 
                 <section class="col-md-6 mb-3">

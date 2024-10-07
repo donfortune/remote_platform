@@ -141,11 +141,26 @@ def get_profile(request, id):
     return render(request, 'profile.html', {'profile': profile})
 
 def job_listing(request):
-    category = Category.objects.all()
+    category = Category.objects.all()  # Get all categories
+    software_job_category = Category.objects.get(slug='software-development')
+    software_jobs = Job.objects.filter(category=software_job_category)  # Get jobs related to this category
+    
     context = {
-        'category': category
+        'category': category,  # Updated variable name
+        'software_jobs': software_jobs,  # Updated variable name
+        'software_job_category': software_job_category,  # Pass the category for display
     }
     return render(request, 'job_listing.html', context)
+
+
+# def job_listing(request):
+#     category = Category.objects.all()
+#     software_job = Category.objects.get(slug='software-development')
+#     context = {
+#         'category': category,
+#         'software_job': software_job,
+#     }
+#     return render(request, 'job_listing.html', context)
 
 def edit_recruiter_profile(request, id):
     profile = Profile.objects.get(id=id)
@@ -192,8 +207,12 @@ def add_cv(request, id):
 
 def get_jobs(request):
     jobs = Job.objects.all()
-    print(f'Jobs retrieved: {jobs}') 
-    return render(request, 'index.html', {'jobs': jobs})
+    category = Category.objects.get(slug='software-development')
+    context = {
+        'jobs': jobs,
+        'category': category
+    }
+    return render(request, 'job_listing.html', context)
 
 def get_job(request, id):
     job = Job.objects.get(id=id) 
@@ -208,3 +227,12 @@ def contact_us(request):
 
 def terms(request):
     return render(request, 'terms.html')
+
+def job_listing_by_category(request, slug):
+    category = Category.objects.get(slug=slug)
+    jobs = Job.objects.filter(category=category)
+    context = {
+        'category': category,
+        'jobs': jobs
+    }
+    return render(request, 'job_listing.html', context)
