@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, User, Job
+from .models import Profile, User, Job, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -141,7 +141,11 @@ def get_profile(request, id):
     return render(request, 'profile.html', {'profile': profile})
 
 def job_listing(request):
-    return render(request, 'job_listing.html')
+    category = Category.objects.all()
+    context = {
+        'category': category
+    }
+    return render(request, 'job_listing.html', context)
 
 def edit_recruiter_profile(request, id):
     profile = Profile.objects.get(id=id)

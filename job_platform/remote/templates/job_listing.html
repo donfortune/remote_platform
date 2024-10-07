@@ -38,54 +38,20 @@
 
         <!-- Job Categories -->
         <div class="row text-center mb-5">
-            <div class="col-md-2 col-6 mb-3">
-                <a href="#" class="text-decoration-none" data-category="software-development">
-                    <div class="p-3 border rounded bg-light category-card">
-                        <i class="bi bi-laptop fs-1 text-primary"></i>
-                        <p class="mt-2">Software Development</p>
+            <div class="row text-center mb-5">
+                {% for category in category %}
+                    <div class="col-md-2 col-6 mb-3">
+                        <a href="#" class="text-decoration-none" data-category="{{ category.slug }}">
+                            <div class="p-3 border rounded bg-light category-card">
+                                <i class="bi bi-laptop fs-1 text-primary"></i> <!-- Adjust icon dynamically if needed -->
+                                <p class="mt-2">{{ category.name }}</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
+                {% endfor %}
             </div>
-            <div class="col-md-2 col-6 mb-3">
-                <a href="#" class="text-decoration-none" data-category="data-science">
-                    <div class="p-3 border rounded bg-light category-card">
-                        <i class="bi bi-bar-chart fs-1 text-primary"></i>
-                        <p class="mt-2">Data Science</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2 col-6 mb-3">
-                <a href="#" class="text-decoration-none" data-category="design">
-                    <div class="p-3 border rounded bg-light category-card">
-                        <i class="bi bi-brush fs-1 text-primary"></i>
-                        <p class="mt-2">Design</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2 col-6 mb-3">
-                <a href="#" class="text-decoration-none" data-category="management">
-                    <div class="p-3 border rounded bg-light category-card">
-                        <i class="bi bi-briefcase fs-1 text-primary"></i>
-                        <p class="mt-2">Management</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2 col-6 mb-3">
-                <a href="#" class="text-decoration-none" data-category="cloud-devops">
-                    <div class="p-3 border rounded bg-light category-card">
-                        <i class="bi bi-cloud fs-1 text-primary"></i>
-                        <p class="mt-2">Cloud/DevOps</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2 col-6 mb-3">
-                <a href="#" class="text-decoration-none" data-category="virtual-assistant">
-                    <div class="p-3 border rounded bg-light category-card">
-                        <i class="bi bi-person-workspace fs-1 text-primary"></i>
-                        <p class="mt-2">Virtual Assistant</p>
-                    </div>
-                </a>
-            </div>
+            
+            
         </div>
 
         <!-- Job Listings -->
