@@ -195,3 +195,12 @@ def get_job(request, id):
     job = Job.objects.get(id=id) 
     print(job)
     return render(request, 'index.html', {'job': job})
+
+def about_us(request):
+    return render(request, 'about_us.html')
+
+def contact_us(request):
+    return render(request, 'contact_us.html')
+
+def terms(request):
+    return render(request, 'terms.html')
