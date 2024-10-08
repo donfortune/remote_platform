@@ -120,6 +120,45 @@
         .trusted-by img:hover {
             opacity: 1;
         }
+         /* Scrolling wrapper styling */
+        .scrolling-logos-wrapper {
+            overflow: hidden;
+            position: relative;
+            max-width: 100%;
+        }
+
+        /* Scrolling logos */
+        .scrolling-logos {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            animation: scroll 30s linear infinite;
+            width: max-content; /* Ensures the scrolling content can be wide enough for animation */
+        }
+
+        /* Individual logo item styling */
+        .logo-item {
+            flex-shrink: 0;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        /* Smaller logo styling */
+        .logo-img {
+            max-height: 50px;
+            margin: 0 auto;
+        }
+
+        /* Scroll animation */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -169,26 +208,95 @@
         </div>
     </section>
 
-    <!-- Trusted By Section -->
-    <section class="trusted-by text-center my-5">
+     <!-- Trusted By Section -->
+    <section class="trusted-by text-center py-5 bg-light">
         <div class="container">
-            <h2 class="mb-4">Trusted By</h2>
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="https://via.placeholder.com/150" alt="Company 1" class="img-fluid">
-                </div>
-                <div class="col-md-3">
-                    <img src="https://via.placeholder.com/150" alt="Company 2" class="img-fluid">
-                </div>
-                <div class="col-md-3">
-                    <img src="https://via.placeholder.com/150" alt="Company 3" class="img-fluid">
-                </div>
-                <div class="col-md-3">
-                    <img src="https://via.placeholder.com/150" alt="Company 4" class="img-fluid">
+            <h2 class="mb-5">Trusted By</h2>
+            <!-- Scrolling container -->
+            <div class="scrolling-logos-wrapper">
+                <div class="scrolling-logos">
+                    <!-- Google -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Microsoft -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Amazon -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- IBM -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Facebook -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Apple -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Tesla -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors_logo.svg" alt="Tesla" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Twitter -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg" alt="Twitter" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Intel -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg" alt="Intel" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Oracle -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Oracle_logo.svg" alt="Oracle" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Netflix -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Adobe -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Adobe_Logo.svg" alt="Adobe" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Uber -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.svg" alt="Uber" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Samsung -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Cisco -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Cisco_logo_blue_2016.svg" alt="Cisco" class="img-fluid mb-3 logo-img">
+                    </div>
+
+                    <!-- Duplicate the logos for seamless scrolling -->
+                    <!-- Start of duplicate logos -->
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <div class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="img-fluid mb-3 logo-img">
+                    </div>
+                    <!-- Add more duplicates if needed -->
                 </div>
             </div>
         </div>
     </section>
+
+
 
 
     <!-- Featured Job Listings -->
