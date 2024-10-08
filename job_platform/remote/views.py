@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import CustomUserCreationForm, RecruiterEditForm, UserEditForm
 from django.http import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 
 
@@ -142,13 +144,11 @@ def get_profile(request, id):
 
 def job_listing(request):
     category = Category.objects.all()  # Get all categories
-    software_job_category = Category.objects.get(slug='software-development')
-    software_jobs = Job.objects.filter(category=software_job_category)  # Get jobs related to this category
+    jobs = Job.objects.all()  # Get all jobs
     
     context = {
         'category': category,  # Updated variable name
-        'software_jobs': software_jobs,  # Updated variable name
-        'software_job_category': software_job_category,  # Pass the category for display
+        'jobs': jobs
     }
     return render(request, 'job_listing.html', context)
 
@@ -228,11 +228,17 @@ def contact_us(request):
 def terms(request):
     return render(request, 'terms.html')
 
-def job_listing_by_category(request, slug):
-    category = Category.objects.get(slug=slug)
-    jobs = Job.objects.filter(category=category)
-    context = {
-        'category': category,
-        'jobs': jobs
-    }
-    return render(request, 'job_listing.html', context)
+# def job_listing_by_category(request, slug):
+#     category = Category.objects.get(slug=slug)
+#     jobs = Job.objects.filter(category=category)
+#     context = {
+#         'category': category,
+#         'jobs': jobs
+#     }
+#     return render(request, 'job_listing.html', context)
+
+def job_details(request, id):
+    job = Job.objects.get(id=id)
+    return render(request, 'job_details.html')
+
+

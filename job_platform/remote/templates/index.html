@@ -165,7 +165,7 @@
                         <h3>{{ job.title }} <i class="fa-solid fa-laptop-code"></i></h3>
                         <p>{{ job.company }}</p>
                         <p>{{ job.location }}</p>
-                        <button class="btn btn-primary"><i class="fa-solid fa-eye"></i> View Job</button>
+                        <a href="{% url 'job_details' job.id %}" class="btn btn-primary">View Job <i class="fa-solid fa-eye"></i></a>
                     </div>
                 </div>
                 {% endfor %}
