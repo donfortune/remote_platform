@@ -3,7 +3,7 @@ from .models import Profile, User, Job, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .forms import CustomUserCreationForm, RecruiterEditForm, UserEditForm
+from .forms import CustomUserCreationForm, RecruiterEditForm, UserEditForm, JobForm
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -123,8 +123,28 @@ def logout_view(request):
     logout(request)
     return render(request, 'index.html')
 
+# def recruiter_dashboard(request):
+#     category = Category.objects.all()
+#     recruiter = Category.objects.get(slug='recruiters')
+#     print(category)
+#     context = {
+#         'category': category,
+#         'recruiter': recruiter
+#     }
+#     return render(request, 'recruiters.html', context)
+
 def recruiter_dashboard(request):
-    return render(request, 'recruiters.html')
+    category = Category.objects.all()  # Fetch all categories
+    try:
+        recruiter = Category.objects.get(slug='recruiters')  # Fetch 'recruiters' category
+    except Category.DoesNotExist:
+        recruiter = None  # Handle the case where the 'recruiters' category doesn't exist
+
+    context = {
+        'category': category,  # Pass all categories
+        'recruiter': recruiter
+    }
+    return render(request, 'recruiters.html', context)
 
 
 
@@ -239,6 +259,23 @@ def terms(request):
 
 def job_details(request, id):
     job = Job.objects.get(id=id)
-    return render(request, 'job_details.html')
+    context = {
+        'job': job
+    }
+    return render(request, 'job_details.html', context)
+
+
+        
+def create_job(request):
+    if request.method == 'POST':
+        form = JobForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('job_listing')  # Redirect to a job listing page or wherever appropriate
+        else: 
+            print(form.errors)
+    else:
+        form = JobForm()
+    return render(request, 'recruiters.html', {'form': form})
 
 

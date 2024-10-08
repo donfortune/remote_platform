@@ -141,7 +141,8 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Create Job Listing</h2>
-                <form action="/create-job/" method="POST">
+                <form action="{% url 'create_job' %}" method="POST">
+                    {% csrf_token %}
                     <div class="input-group">
                         <label for="title">Job Title</label>
                         <input type="text" id="title" name="title" placeholder="Job Title" required>
@@ -154,10 +155,35 @@
                         <label for="description">Description</label>
                         <textarea id="description" name="description" placeholder="Job Description" required></textarea>
                     </div>
-                    <button type="submit" class="modal-btn">Submit Job</button>
+                    <div class="input-group">
+                        <label for="company_name">Company Name</label>
+                        <input type="text" id="company_name" name="company_name" placeholder="Company Name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="recruiter">Recruiter</label>
+                        <select id="recruiter" name="recruiter" required>
+                            {% if recruiters %}
+                                {% for profile in recruiters %}
+                                    <option value="{{ profile.id }}">{{ profile.user.username }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option disabled>No recruiters available</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            {% for category in category %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="modal-btn">Create Job</button>
                 </form>
             </div>
         </div>
+        
     </div>
 
     
