@@ -208,6 +208,25 @@
         </div>
     </section>
 
+    <!-- Featured Job Listings -->
+    <section class="job-listings py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Featured Jobs <i class="fa-solid fa-briefcase"></i></h2>
+            <div class="row">
+                {% for job in featured_jobs %}
+                <div class="col-md-4">
+                    <div class="job-card">
+                        <h3>{{ job.title }} <i class="fa-solid fa-laptop-code"></i></h3>
+                        <p>{{ job.company }}</p>
+                        <p>{{ job.location }}</p>
+                        <a href="{% url 'job_details' job.id %}" class="btn btn-primary">View Job <i class="fa-solid fa-eye"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
      <!-- Trusted By Section -->
     <section class="trusted-by text-center py-5 bg-light">
         <div class="container">
@@ -311,24 +330,7 @@
 
 
 
-    <!-- Featured Job Listings -->
-    <section class="job-listings py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Featured Jobs <i class="fa-solid fa-briefcase"></i></h2>
-            <div class="row">
-                {% for job in featured_jobs %}
-                <div class="col-md-4">
-                    <div class="job-card">
-                        <h3>{{ job.title }} <i class="fa-solid fa-laptop-code"></i></h3>
-                        <p>{{ job.company }}</p>
-                        <p>{{ job.location }}</p>
-                        <a href="{% url 'job_details' job.id %}" class="btn btn-primary">View Job <i class="fa-solid fa-eye"></i></a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Testimonials Section -->
     <section class="testimonials my-5">

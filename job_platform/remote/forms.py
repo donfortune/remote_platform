@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Job
 
 #modified UserCreationForm
 class CustomUserCreationForm(forms.ModelForm):
@@ -40,3 +40,14 @@ class UserEditForm(forms.ModelForm):
         model = User
         fields = '__all__'
         exclude = ['password', 'last_login', 'is_superuser', 'groups', 'user_permissions', 'is_staff', 'is_active', 'date_joined']
+
+
+class JobForm(forms.ModelForm):
+    class Meta:
+        model = Job
+        fields = '__all__'  # Or specify fields explicitly
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Filter the recruiters to only include those with the 'recruiter' role
+        self.fields['recruiter'].queryset = Profile.objects.filter(role='recruiter')
