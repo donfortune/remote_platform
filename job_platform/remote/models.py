@@ -39,6 +39,7 @@ class Job(models.Model):
     recruiter = models.ForeignKey(Profile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     featured = models.BooleanField(default=False)
+    views_count = models.IntegerField(default=0)
   
 
     def __str__(self):

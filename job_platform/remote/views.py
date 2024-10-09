@@ -286,6 +286,8 @@ def terms(request):
 
 def job_details(request, id):
     job = Job.objects.get(id=id)
+    job.views_count += 1
+    job.save()
     context = {
         'job': job
     }
@@ -304,5 +306,12 @@ def create_job(request):
     else:
         form = JobForm()
     return render(request, 'recruiters.html', {'form': form})
+
+def application(request, id):
+    job = Job.objects.get(id=id)
+    context = {
+        'job': job
+    }
+    return render(request, 'application.html', context)
 
 
