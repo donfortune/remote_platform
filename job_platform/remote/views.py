@@ -373,11 +373,12 @@ def submitted_application(request, id):
 def view_applicants(request, id):
     job = Job.objects.get(id=id)
     applications = JobApplication.objects.filter(job=job)
+    print(applications)
     context = {
         'job': job,
         'applications': applications
     }
-    return render(request, 'recruiters.html', context)
+    return render(request, 'view_applicant.html', context)
 
     
 

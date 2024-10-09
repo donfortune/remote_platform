@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants for {{ job.title }}</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dashboard-header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .applicant-card {
+            background-color: #f4f4f4;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-left: 5px solid #007BFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .applicant-info {
+            flex: 1;
+        }
+
+        .applicant-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .applicant-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-profile-btn,
+        .download-cv-btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-profile-btn:hover,
+        .download-cv-btn:hover {
+            background-color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-header">
+        <h1>Applicants for {{ job.title }}</h1>
+    </div>
+
+    <div class="container">
+        <h2>List of Applicants</h2>
+    
+        {% if applications %}
+            {% for applicant in applications %}
+                <div class="applicant-card">
+                    <div class="applicant-info">
+                        <h3>{{ applicant.full_name }}</h3>
+                        <p>Email: {{ applicant.email }}</p>
+                        <p>Applied on: {{ applicant.submitted_at|date:"F d, Y" }}</p>
+                        <p>Cover Letter: {{ applicant.cover_letter }}</p>
+                    </div>
+    
+                    <div class="actions">
+                        <a href="{% url 'get_profile' applicant.id %}" class="view-profile-btn">View Profile</a>
+                        <a href="{{ applicant.cv_file.url }}" class="download-cv-btn">Download CV</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No applicants have applied for this job yet.</p>
+        {% endif %}
+    </div>
+    
+
+</body>
+</html>
