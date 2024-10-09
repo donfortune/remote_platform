@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, User, Job, Category
+from .models import Profile, User, Job, Category, JobApplication
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -7,6 +7,8 @@ from .forms import CustomUserCreationForm, RecruiterEditForm, UserEditForm, JobF
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
+
 
 
 
@@ -158,6 +160,7 @@ def logout_view(request):
 
 def recruiter_dashboard(request):
     category = Category.objects.all()
+    applicants = JobApplication.objects.all()
     profile = None
     jobs = []
 
@@ -167,7 +170,8 @@ def recruiter_dashboard(request):
         context = {
             'category': category,
             'profile': profile,
-            'jobs': jobs
+            'jobs': jobs,
+            'applicants': applicants
         }
         return render(request, 'recruiters.html', context)
     
@@ -314,4 +318,66 @@ def application(request, id):
     }
     return render(request, 'application.html', context)
 
+# def submitted_application(request, id):
+#     if request.method == 'POST':
+#         data = request.POST
+#         job = Job.objects.get(id, id=data['job_id'])
+#         application = JobApplication.objects.create(
+#             user=request.user,
+#             job=job,
+#             full_name=data['full_name'],
+#             email=data['email'],
+#             cv_file=request.FILES['cv_file'],
+#             cover_letter=data['cover_letter']
+#         )
+#         context = {
+#             'application': application
+#         }
+#         return render(request, 'application.html', context)
+
+def submitted_application(request, id):
+    job = get_object_or_404(Job, id=id)  # Ensure the job exists
+
+    if request.method == 'POST':
+        data = request.POST
+        # Ensure job_id is coming from the request
+        if 'job_id' not in data or int(data['job_id']) != job.id:
+            messages.error(request, "Invalid job ID.")
+            return render(request, 'application.html', {'job': job})
+
+        # Ensure cv_file is provided
+        cv_file = request.FILES.get('cv_file')
+        if not cv_file:
+            messages.error(request, "Please upload a CV file.")
+            return render(request, 'application.html', {'job': job})
+
+        # Create the job application
+        application = JobApplication.objects.create(
+            user=request.user,
+            job=job,
+            full_name=data['full_name'],
+            email=data['email'],
+            cv_file=cv_file,
+            cover_letter=data['cover_letter']
+        )
+
+        messages.success(request, "Your application has been submitted successfully!")
+        context = {
+            'application': application
+        }
+        return render(request, 'application.html', context)
+
+    # If the request method is not POST, render the application form
+    return render(request, 'application.html', {'job': job})
+
+def view_applicants(request, id):
+    job = Job.objects.get(id=id)
+    applications = JobApplication.objects.filter(job=job)
+    context = {
+        'job': job,
+        'applications': applications
+    }
+    return render(request, 'recruiters.html', context)
+
+    
 

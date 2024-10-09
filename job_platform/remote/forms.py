@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Job
+from .models import Profile, Job, JobApplication
 
 #modified UserCreationForm
 class CustomUserCreationForm(forms.ModelForm):
@@ -51,3 +51,14 @@ class JobForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Filter the recruiters to only include those with the 'recruiter' role
         self.fields['recruiter'].queryset = Profile.objects.filter(role='recruiter')
+
+class ApplicationForm(forms.ModelForm):
+    class Meta:
+        model = JobApplication
+        fields = '__all__'  # Or specify fields explicitly
+        exclude = ['user', 'submitted_at']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Filter the jobs to only include those that are not yet applied to by the current user
+        self.fields['job'].queryset = Job.objects.exclude(jobapplication__user=self.request.user)

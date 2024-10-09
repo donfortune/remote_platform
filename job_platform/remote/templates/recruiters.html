@@ -105,7 +105,7 @@
                                 <h3>{{ job.title }}</h3>
                                 <p>Posted: {{ job.created_at|date:"F d, Y" }}</p>
                                 <p>Location: {{ job.location }}</p>
-                                <button class="details-btn">View Applicants</button>
+                                <button class="details-btn" onclick='window.location.href="{% url 'applicants' job.id %}"'>View Applicants</button>
                                 <p class="views">Viewed by {{ job.views_count|default:0 }} people</p>
                             </div>
                         {% endfor %}
