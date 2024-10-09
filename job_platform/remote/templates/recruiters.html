@@ -98,21 +98,20 @@
             <section class="job-section">
                 <h2>Your Job Listings</h2>
                 <div class="job-list">
-                    <!-- Example Job Listings -->
-                    <div class="job-card">
-                        <h3>Software Engineer</h3>
-                        <p>Posted: September 20, 2024</p>
-                        <p>Location: Remote</p>
-                        <button class="details-btn">View Applicants</button>
-                        <p class="views">Viewed by 35 people</p>
-                    </div>
-                    <div class="job-card">
-                        <h3>Backend Developer</h3>
-                        <p>Posted: September 15, 2024</p>
-                        <p>Location: Lagos, Nigeria</p>
-                        <button class="details-btn">View Applicants</button>
-                        <p class="views">Viewed by 25 people</p>
-                    </div>
+                    <!-- Dynamically list the jobs posted by the recruiter -->
+                    {% if jobs %}
+                        {% for job in jobs %}
+                            <div class="job-card">
+                                <h3>{{ job.title }}</h3>
+                                <p>Posted: {{ job.created_at|date:"F d, Y" }}</p>
+                                <p>Location: {{ job.location }}</p>
+                                <button class="details-btn">View Applicants</button>
+                                <p class="views">Viewed by {{ job.views_count|default:0 }} people</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No job listings yet. Post your first job!</p>
+                    {% endif %}
                 </div>
             </section>
 
@@ -161,16 +160,10 @@
                     </div>
                     <div class="input-group">
                         <label for="recruiter">Recruiter</label>
-                        <select id="recruiter" name="recruiter" required>
-                            {% if recruiters %}
-                                {% for profile in recruiters %}
-                                    <option value="{{ profile.id }}">{{ profile.user.username }}</option>
-                                {% endfor %}
-                            {% else %}
-                                <option disabled>No recruiters available</option>
-                            {% endif %}
-                        </select>
+                        <input type="hidden" id="recruiter" name="recruiter" value="{{ profile.id }}" />
+                        <input type="text" value="{{ profile.user.username }}" disabled />
                     </div>
+                    
                     <div class="input-group">
                         <label for="category">Category</label>
                         <select id="category" name="category" required>

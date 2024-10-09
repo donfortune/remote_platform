@@ -133,18 +133,45 @@ def logout_view(request):
 #     }
 #     return render(request, 'recruiters.html', context)
 
-def recruiter_dashboard(request):
-    category = Category.objects.all()  # Fetch all categories
-    try:
-        recruiter = Category.objects.get(slug='recruiters')  # Fetch 'recruiters' category
-    except Category.DoesNotExist:
-        recruiter = None  # Handle the case where the 'recruiters' category doesn't exist
+# def recruiter_dashboard(request):
+#     category = Category.objects.all()  # Fetch all categories
+#     profile = None
 
-    context = {
-        'category': category,  # Pass all categories
-        'recruiter': recruiter
-    }
-    return render(request, 'recruiters.html', context)
+#     # Check if a Profile exists for the current user
+#     try:
+#         profile = Profile.objects.get(user=request.user)
+
+#         # Ensure the user is a recruiter
+#         if profile.role != 'recruiter':
+#             return render(request, 'error.html', {'message': 'You do not have permission to access this page.'})
+
+#     except Profile.DoesNotExist:
+#         return render(request, 'error.html', {'message': 'Profile does not exist.'})
+
+#     # Pass the categories and profile to the template
+#     context = {
+#         'category': category,
+#         'profile': profile
+#     }
+
+#     return render(request, 'recruiters.html', context)
+
+def recruiter_dashboard(request):
+    category = Category.objects.all()
+    profile = None
+    jobs = []
+
+    profile = Profile.objects.get(user=request.user)
+    jobs = Job.objects.filter(recruiter=profile)
+    if profile.role == 'recruiter':
+        context = {
+            'category': category,
+            'profile': profile,
+            'jobs': jobs
+        }
+        return render(request, 'recruiters.html', context)
+    
+    
 
 
 
@@ -271,7 +298,7 @@ def create_job(request):
         form = JobForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('job_listing')  # Redirect to a job listing page or wherever appropriate
+            return redirect('recruiter_dashboard')  # Redirect to a job listing page or wherever appropriate
         else: 
             print(form.errors)
     else:
