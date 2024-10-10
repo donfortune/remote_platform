@@ -47,13 +47,16 @@ class Job(models.Model):
     
 
 class JobApplication(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)  # Assuming you have a Job model
     full_name = models.CharField(max_length=255)
     email = models.EmailField()
     cv_file = models.FileField(upload_to='resumes/')
     cover_letter = models.TextField()
     submitted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'job')
 
     def __str__(self):
         return f"{self.full_name} - {self.job.title}"

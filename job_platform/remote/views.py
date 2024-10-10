@@ -166,12 +166,14 @@ def recruiter_dashboard(request):
 
     profile = Profile.objects.get(user=request.user)
     jobs = Job.objects.filter(recruiter=profile)
+    
     if profile.role == 'recruiter':
         context = {
             'category': category,
             'profile': profile,
             'jobs': jobs,
-            'applicants': applicants
+            'applicants': applicants,
+            
         }
         return render(request, 'recruiters.html', context)
     
@@ -301,7 +303,11 @@ def job_details(request, id):
         
 def create_job(request):
     if request.method == 'POST':
+        
         form = JobForm(request.POST, request.FILES)
+        context = {
+            'form': form,
+        }
         if form.is_valid():
             form.save()
             return redirect('recruiter_dashboard')  # Redirect to a job listing page or wherever appropriate
@@ -309,7 +315,7 @@ def create_job(request):
             print(form.errors)
     else:
         form = JobForm()
-    return render(request, 'recruiters.html', {'form': form})
+    return render(request, 'recruiters.html', context)
 
 def application(request, id):
     job = Job.objects.get(id=id)
@@ -362,9 +368,9 @@ def submitted_application(request, id):
         )
 
         messages.success(request, "Your application has been submitted successfully!")
-        context = {
-            'application': application
-        }
+        # context = {
+        #     'application': application
+        # }
         return render(request, 'application.html', context)
 
     # If the request method is not POST, render the application form
