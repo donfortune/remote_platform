@@ -376,6 +376,7 @@ def submitted_application(request, id):
     # If the request method is not POST, render the application form
     return render(request, 'application.html', {'job': job})
 
+@login_required
 def view_applicants(request, id):
     job = Job.objects.get(id=id)
     applications = JobApplication.objects.filter(job=job)
