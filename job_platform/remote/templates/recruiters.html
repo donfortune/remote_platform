@@ -116,23 +116,23 @@
             </section>
 
             <!-- Applicants Section -->
-            <section class="applicant-section">
-                <h2>Recent Applicants</h2>
-                <div class="applicant-list">
-                    <div class="applicant-card">
-                        <h3>John Doe</h3>
-                        <p>Applied for: Software Engineer</p>
-                        <p>Applied on: September 25, 2024</p>
+        <section class="applicant-section">
+            <h2>Recent Applicants</h2>
+            <div class="applicant-list">
+                {% for application in applications %}
+                <div class="applicant-card">
+                    <h3>{{ application.full_name }}</h3>
+                    <p>Applied for: {{ application.job.title }}</p>
+                    <p>Applied on: {{ application.created_at|date:"F j, Y" }}</p>
+                    <a href="{% url 'applicant_profile' application.id %}">
                         <button class="details-btn">View Profile</button>
-                    </div>
-                    <div class="applicant-card">
-                        <h3>Jane Smith</h3>
-                        <p>Applied for: Backend Developer</p>
-                        <p>Applied on: September 23, 2024</p>
-                        <button class="details-btn">View Profile</button>
-                    </div>
+                    </a>
                 </div>
-            </section>
+                {% empty %}
+                <p>No recent applicants found.</p>
+                {% endfor %}
+            </div>
+        </section>
         </div>
 
         <!-- Modal for Adding Job -->

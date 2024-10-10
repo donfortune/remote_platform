@@ -414,6 +414,12 @@ def view_applicants(request, id):
     }
     return render(request, 'view_applicant.html', context)
 
+@login_required
+def recent_applicants(request):
+    applications = JobApplication.objects.all().order_by('-submitted_at')[:5]
+    print(applications)
+    return render(request, 'recent_applicants.html', {'applications': applications})
+
 
     
 
