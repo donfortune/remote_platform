@@ -160,6 +160,7 @@
                     </div>
                     <div class="input-group">
                         <label for="recruiter">Recruiter</label>
+                        <!-- Hidden field for the recruiter profile -->
                         <input type="hidden" id="recruiter" name="recruiter" value="{{ profile.id }}" />
                         <input type="text" value="{{ profile.user.username }}" disabled />
                     </div>
@@ -174,7 +175,7 @@
                     </div>
                     <button type="submit" class="modal-btn">Create Job</button>
                 </form>
-            </div>
+                
         </div>
         
     </div>

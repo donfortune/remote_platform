@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.http import HttpResponseForbidden
+from django.db import IntegrityError
 
 
 
@@ -301,20 +303,32 @@ def job_details(request, id):
 
 
         
+@login_required
 def create_job(request):
     if request.method == 'POST':
-        
         form = JobForm(request.POST, request.FILES)
-        context = {
-            'form': form,
-        }
         if form.is_valid():
-            form.save()
-            return redirect('recruiter_dashboard')  # Redirect to a job listing page or wherever appropriate
-        else: 
+            # Save the job instance, but don't commit yet
+            job = form.save(commit=False)
+            # Assign the current user's profile as the recruiter
+            job.recruiter = request.user.profile
+            # Now save the job instance with the recruiter field
+            job.save()
+            return redirect('recruiter_dashboard')  # Redirect to dashboard or job listing page
+        else:
             print(form.errors)
     else:
         form = JobForm()
+
+    # Pass categories to the template for the category dropdown
+    categories = Category.objects.all()
+
+    context = {
+        'form': form,
+        'categories': categories,
+        'profile': request.user.profile  # Assuming you have a one-to-one relation between user and profile
+    }
+
     return render(request, 'recruiters.html', context)
 
 def application(request, id):
@@ -341,51 +355,65 @@ def application(request, id):
 #         }
 #         return render(request, 'application.html', context)
 
+@login_required
 def submitted_application(request, id):
     job = get_object_or_404(Job, id=id)  # Ensure the job exists
 
     if request.method == 'POST':
-        data = request.POST
-        # Ensure job_id is coming from the request
-        if 'job_id' not in data or int(data['job_id']) != job.id:
-            messages.error(request, "Invalid job ID.")
-            return render(request, 'application.html', {'job': job})
+        # Check if the user has already applied to this job
+        if JobApplication.objects.filter(user=request.user, job=job).exists():
+            messages.error(request, "You have already applied for this job.")
+            return redirect('job_details', id=job.id)
 
-        # Ensure cv_file is provided
+        data = request.POST
         cv_file = request.FILES.get('cv_file')
+
         if not cv_file:
             messages.error(request, "Please upload a CV file.")
             return render(request, 'application.html', {'job': job})
 
-        # Create the job application
-        application = JobApplication.objects.create(
-            user=request.user,
-            job=job,
-            full_name=data['full_name'],
-            email=data['email'],
-            cv_file=cv_file,
-            cover_letter=data['cover_letter']
-        )
+        try:
+            # Create the job application
+            JobApplication.objects.create(
+                user=request.user,
+                job=job,
+                full_name=data.get('full_name'),
+                email=data.get('email'),
+                cv_file=cv_file,
+                cover_letter=data.get('cover_letter', '')  # Optional field
+            )
+            messages.success(request, "Your application has been submitted successfully!")
+            return redirect('job_details', id=job.id)
 
-        messages.success(request, "Your application has been submitted successfully!")
-        # context = {
-        #     'application': application
-        # }
-        return render(request, 'application.html', context)
+        except IntegrityError:
+            messages.error(request, "You have already applied for this job.")
+            return redirect('job_details', id=job.id)
 
-    # If the request method is not POST, render the application form
     return render(request, 'application.html', {'job': job})
 
 @login_required
 def view_applicants(request, id):
     job = Job.objects.get(id=id)
+
+    # Ensure that only the recruiter who posted the job can view applicants
+    if job.recruiter.user != request.user:
+        return HttpResponseForbidden("You are not authorized to view applicants for this job.")
+    
+    # Fetch job applications related to the specific job
     applications = JobApplication.objects.filter(job=job)
-    print(applications)
+
+    # Debugging information
+    print(f"Job ID: {job.id}, Title: {job.title}")
+    print(f"Number of applications found: {applications.count()}")
+    for application in applications:
+        print(f"Applicant: {application.full_name}, Email: {application.email}")
+
     context = {
         'job': job,
-        'applications': applications
+        'applications': applications  # Pass the applications to the template
     }
     return render(request, 'view_applicant.html', context)
+
 
     
 

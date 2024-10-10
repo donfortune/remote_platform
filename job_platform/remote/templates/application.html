@@ -133,25 +133,25 @@
                         <form action="{% url 'application' job.id %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="fullName">Full Name</label>
-                                <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                <label for="full_name">Full Name</label>
+                                <input type="text" class="form-control" id="full_name" name="full_name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="form-group">
-                                <label for="cvUpload">Upload CV</label>
-                                <input type="file" class="form-control" id="cvUpload" name="cvUpload" accept=".pdf,.doc,.docx" required>
+                                <label for="cv_file">Upload CV</label>
+                                <input type="file" class="form-control" id="cv_file" name="cv_file" accept=".pdf,.doc,.docx" required>
                             </div>
                             <div class="form-group">
-                                <label for="coverLetter">Cover Letter</label>
-                                <textarea class="form-control" id="coverLetter" name="coverLetter" rows="4"></textarea>
+                                <label for="cover_letter">Cover Letter</label>
+                                <textarea class="form-control" id="cover_letter" name="cover_letter" rows="4"></textarea>
                             </div>
                             <div class="apply-btn">
                                 <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Submit Application</button>
                             </div>
-                        </form>
+                        </form>                        
                     </div>
                 </div>
             </div>

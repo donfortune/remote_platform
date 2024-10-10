@@ -45,18 +45,18 @@ class UserEditForm(forms.ModelForm):
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = '__all__'  # Or specify fields explicitly
+        fields = ['title', 'description', 'location', 'company_name', 'category', 'recruiter']  # Or specify fields explicitly
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Filter the recruiters to only include those with the 'recruiter' role
-        self.fields['recruiter'].queryset = Profile.objects.filter(role='recruiter')
+        # self.fields['recruiter'].queryset = Profile.objects.filter(role='recruiter')
 
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = JobApplication
-        fields = '__all__'  # Or specify fields explicitly
-        exclude = ['user', 'submitted_at']
+        fields = ['full_name', 'email', 'cv_file', 'cover_letter']   # Or specify fields explicitly
+    
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
