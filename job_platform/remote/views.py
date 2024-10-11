@@ -188,7 +188,13 @@ def recruiter_dashboard(request):
 @login_required
 def jobs_dashboard(request):
     profile = Profile.objects.get(user=request.user)
-    return render(request, 'jobs.html', {'profile': profile})
+    jobs = profile.viewed_jobs.all()
+    print(jobs)
+    context = {
+        'profile': profile,
+        'jobs': jobs
+    }
+    return render(request, 'jobs.html', context)
 
 def get_profiles(request):
     profiles = Profile.objects.all()
@@ -298,6 +304,11 @@ def job_details(request, id):
     job = Job.objects.get(id=id)
     job.views_count += 1
     job.save()
+
+    profile = Profile.objects.get(user=request.user)
+    if not profile.viewed_jobs.filter(id=job.id).exists():
+        profile.viewed_jobs.add(job)  # Add job to the viewed jobs list
+        
     context = {
         'job': job
     }
@@ -413,6 +424,13 @@ def view_applicants(request, id):
         'applications': applications  # Pass the applications to the template
     }
     return render(request, 'view_applicant.html', context)
+
+
+@login_required
+def jobs_viewed(request):
+    profile = Profile.objects.get(user=request.user)
+    jobs = Job.objects.filter(views_count__gt=0)
+    return render(request, 'jobs_viewed.html', {'jobs': jobs})
 
 
 

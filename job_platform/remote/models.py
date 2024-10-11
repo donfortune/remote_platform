@@ -17,6 +17,7 @@ class Profile(models.Model):
     role = models.CharField(max_length=30, choices=ROLE_CHOICES)  # Use choices for predefined options
     company_name = models.CharField(max_length=100, blank=True, null=True)  # Recruiters' company
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)  # Job seekers' resume
+    viewed_jobs = models.ManyToManyField('Job', related_name='viewed_by', blank=True)
 
     def __str__(self):
         return self.user.username

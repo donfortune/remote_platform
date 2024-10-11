@@ -31,23 +31,22 @@
                     <h2>Jobs You've Viewed</h2>
                 </div>
                 <div class="job-list" id="viewed-jobs">
-                    <!-- Dummy Data for Viewed Jobs -->
+                    {% for job in jobs %}
                     <div class="job-card">
-                        <h3>Software Engineer</h3>
-                        <p>Company: XYZ Tech Solutions</p>
-                        <p>Location: Remote</p>
-                        <p>Date Viewed: September 15, 2024</p>
-                        <button class="details-btn">View Details</button>
+                        <h3>{{ job.title }}</h3>
+                        <p>Company: {{ job.company_name }}</p> <!-- Assuming Job has a company_name field -->
+                        <p>Location: {{ job.location }}</p> <!-- Assuming Job has a location field -->
+                        <p>Date Viewed: {{ job.jobview_set.first.viewed_at|date:"F j, Y" }}</p> <!-- Fetch the first view date -->
+                        <a href="{% url 'job_details' job.id %}">
+                            <button class="details-btn">View Details</button>
+                        </a>
                     </div>
-                    <div class="job-card">
-                        <h3>Backend Developer</h3>
-                        <p>Company: ABC Digital</p>
-                        <p>Location: Lagos, Nigeria</p>
-                        <p>Date Viewed: September 12, 2024</p>
-                        <button class="details-btn">View Details</button>
-                    </div>
+                    {% empty %}
+                    <p>You haven't viewed any jobs yet.</p>
+                    {% endfor %}
                 </div>
             </section>
+
 
             <!-- Demarcation Line -->
             <div class="demarcation"></div>
