@@ -139,6 +139,27 @@ body {
     background-color: #0056b3;
 }
 
+.status-btn {
+    position: absolute; /* Absolute positioning to place it in the corner */
+    top: 10px; /* Space from the top */
+    right: 10px; /* Space from the right */
+    padding: 5px 10px; /* Padding for the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for the button */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor for button */
+}
+
+.status-btn.open {
+    background-color: #0056b3; /* Softer green for open jobs */
+}
+
+.status-btn.closed {
+    background-color: Red; /* Orange for closed jobs */
+}
+.status-btn:hover {
+    opacity: 0.8; /* Slightly reduce opacity on hover */
+} 
 /* Responsive Design */
 @media (max-width: 768px) {
     .jobs-grid-container {

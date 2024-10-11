@@ -6,6 +6,29 @@
     <title>My Jobs - Remote Jobs Hub</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/job.css' %}">
+    <style>
+        .status-btn {
+            position: absolute; /* Absolute positioning to place it in the corner */
+            top: 10px; /* Space from the top */
+            right: 10px; /* Space from the right */
+            padding: 5px 10px; /* Padding for the button */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners for the button */
+            color: white; /* Text color */
+            cursor: pointer; /* Pointer cursor for button */
+        }
+
+        .status-btn.open {
+            background-color: #0056b3; /* Softer green for open jobs */
+        }
+
+        .status-btn.closed {
+            background-color: Red; /* Orange for closed jobs */
+        }
+        .status-btn:hover {
+            opacity: 0.8; /* Slightly reduce opacity on hover */
+        }
+    </style>
 </head>
 <body>
     <div class="dashboard-container">
@@ -33,6 +56,9 @@
                 <div class="job-list" id="viewed-jobs">
                     {% for job in jobs %}
                     <div class="job-card">
+                        <button class="status-btn {{ job.status }}" style="float: right;">
+                            {{ job.get_status_display }}
+                        </button>
                         <h3>{{ job.title }}</h3>
                         <p>Company: {{ job.company_name }}</p> <!-- Assuming Job has a company_name field -->
                         <p>Location: {{ job.location }}</p> <!-- Assuming Job has a location field -->
@@ -51,30 +77,30 @@
             <!-- Demarcation Line -->
             <div class="demarcation"></div>
 
-            <!-- Applied Jobs -->
+           <!-- Applied Jobs -->
             <section class="job-section">
                 <div class="section-header">
                     <h2>Jobs You've Applied To</h2>
                 </div>
                 <div class="job-list" id="applied-jobs">
-                    <!-- Dummy Data for Applied Jobs -->
+                    {% for job in applied_jobs %}
                     <div class="job-card applied">
-                        <h3>Data Scientist</h3>
-                        <p>Company: ML Labs</p>
-                        <p>Location: Remote</p>
-                        <p>Applied on: September 10, 2024</p>
-                        <button class="details-btn">View Details</button>
+                        <button class="status-btn {{ job.status }}" style="float: right;">
+                            {{ job.get_status_display }}
+                        </button>
+                        <h3>{{ job.title }}</h3>
+                        <p>Company: {{ job.company_name }}</p> <!-- Assuming Job has a company_name field -->
+                        <p>Location: {{ job.location }}</p> <!-- Assuming Job has a location field -->
+                        <p>Applied on: {{ job.jobview_set.first.viewed_at|date:"F j, Y" }}</p> <!-- Modify as per your logic -->
+                        <a href="{% url 'job_details' job.id %}">
+                            <button class="details-btn">View Details</button>
+                        </a>
                     </div>
-                    <div class="job-card applied">
-                        <h3>Frontend Developer</h3>
-                        <p>Company: Webify</p>
-                        <p>Location: Abuja, Nigeria</p>
-                        <p>Applied on: September 8, 2024</p>
-                        <button class="details-btn">View Details</button>
-                    </div>
+                    {% empty %}
+                    <p>You haven't applied to any jobs yet.</p>
+                    {% endfor %}
                 </div>
             </section>
-
 
         </div>
 

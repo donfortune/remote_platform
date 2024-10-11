@@ -189,10 +189,13 @@ def recruiter_dashboard(request):
 def jobs_dashboard(request):
     profile = Profile.objects.get(user=request.user)
     jobs = profile.viewed_jobs.all()
+    applied_jobs = profile.applied_jobs.all()
     print(jobs)
+    print(applied_jobs)
     context = {
         'profile': profile,
-        'jobs': jobs
+        'jobs': jobs,
+        'applied_jobs': applied_jobs
     }
     return render(request, 'jobs.html', context)
 
@@ -308,7 +311,11 @@ def job_details(request, id):
     profile = Profile.objects.get(user=request.user)
     if not profile.viewed_jobs.filter(id=job.id).exists():
         profile.viewed_jobs.add(job)  # Add job to the viewed jobs list
-        
+    
+
+    profile.applied_jobs.add(job)
+    
+
     context = {
         'job': job
     }

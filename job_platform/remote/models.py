@@ -18,6 +18,7 @@ class Profile(models.Model):
     company_name = models.CharField(max_length=100, blank=True, null=True)  # Recruiters' company
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)  # Job seekers' resume
     viewed_jobs = models.ManyToManyField('Job', related_name='viewed_by', blank=True)
+    applied_jobs = models.ManyToManyField('Job', related_name='applicants', blank=True)
 
     def __str__(self):
         return self.user.username
@@ -41,6 +42,11 @@ class Job(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     featured = models.BooleanField(default=False)
     views_count = models.IntegerField(default=0)
+    status = models.CharField(
+        max_length=10,
+        choices=[('open', 'Open'), ('closed', 'Closed')],
+        default='open',
+    )
   
 
     def __str__(self):

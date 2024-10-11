@@ -54,6 +54,37 @@
             background-color: #0056b3;
             border-color: #0056b3;
         }
+
+        .job-card {
+            position: relative; /* Make job card a positioned element */
+            padding: 20px; /* Add some padding for aesthetics */
+            border: 1px solid #ccc; /* Border for visibility */
+            margin-bottom: 20px; /* Space between cards */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .status-btn {
+            position: absolute; /* Absolute positioning to place it in the corner */
+            top: 10px; /* Space from the top */
+            right: 10px; /* Space from the right */
+            padding: 5px 10px; /* Padding for the button */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners for the button */
+            color: white; /* Text color */
+            cursor: pointer; /* Pointer cursor for button */
+        }
+
+        .status-btn.open {
+            background-color: #0056b3; /* Softer green for open jobs */
+        }
+
+        .status-btn.closed {
+            background-color: Red; /* Orange for closed jobs */
+        }
+        .status-btn:hover {
+            opacity: 0.8; /* Slightly reduce opacity on hover */
+        }
     </style>
 </head>
 <body>
@@ -99,8 +130,11 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <div class="card-body">
+                            <button class="status-btn {{ job.status }}" style="float: right;">
+                                {{ job.get_status_display }}
+                            </button>
                             <h5 class="card-title">{{ job.title }}</h5>
-                            <p class="card-text">{{ job.company }}</p>
+                            <p class="card-text">{{ job.company_name }}</p>
                             <p class="card-text">Location: {{ job.location }}</p>
                             <a href="{% url 'job_details' job.id %}" class="btn btn-outline-primary">
                                 <i class="fa-solid fa-eye"></i> View Details
