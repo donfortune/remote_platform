@@ -163,6 +163,7 @@ def logout_view(request):
 def recruiter_dashboard(request):
     category = Category.objects.all()
     applicants = JobApplication.objects.all()
+    applications = JobApplication.objects.all().order_by('-submitted_at')[:5]
     profile = None
     jobs = []
 
@@ -175,6 +176,7 @@ def recruiter_dashboard(request):
             'profile': profile,
             'jobs': jobs,
             'applicants': applicants,
+            'applications': applications
             
         }
         return render(request, 'recruiters.html', context)
@@ -402,9 +404,7 @@ def view_applicants(request, id):
     # Fetch job applications related to the specific job
     applications = JobApplication.objects.filter(job=job)
 
-    # Debugging information
-    print(f"Job ID: {job.id}, Title: {job.title}")
-    print(f"Number of applications found: {applications.count()}")
+    
     for application in applications:
         print(f"Applicant: {application.full_name}, Email: {application.email}")
 
@@ -414,11 +414,6 @@ def view_applicants(request, id):
     }
     return render(request, 'view_applicant.html', context)
 
-@login_required
-def recent_applicants(request):
-    applications = JobApplication.objects.all().order_by('-submitted_at')[:5]
-    print(applications)
-    return render(request, 'recent_applicants.html', {'applications': applications})
 
 
     

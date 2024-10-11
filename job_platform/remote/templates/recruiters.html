@@ -124,7 +124,7 @@
                     <h3>{{ application.full_name }}</h3>
                     <p>Applied for: {{ application.job.title }}</p>
                     <p>Applied on: {{ application.created_at|date:"F j, Y" }}</p>
-                    <a href="{% url 'applicant_profile' application.id %}">
+                    <a href="{% url 'get_profile' profile.id %}">
                         <button class="details-btn">View Profile</button>
                     </a>
                 </div>
