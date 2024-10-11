@@ -76,6 +76,19 @@
     <link rel="stylesheet" href="{% static 'css/recruiters.css' %}">
     <script defer src="{% static 'js/modal.js' %}"></script>
     <style>
+        .job-card {
+            position: relative; /* Required for absolute positioning of the button */
+            padding: 20px; /* Add some padding for aesthetics */
+            border: 1px solid #ddd; /* Optional: border for job card */
+            border-radius: 5px; /* Optional: rounded corners for job card */
+            margin-bottom: 20px; /* Space between job cards */
+            transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+        }
+    
+        .job-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: shadow on hover */
+        }
+    
         .status-btn {
             position: absolute; /* Absolute positioning to place it in the corner */
             top: 10px; /* Space from the top */
@@ -86,18 +99,48 @@
             color: white; /* Text color */
             cursor: pointer; /* Pointer cursor for button */
         }
-
+    
         .status-btn.open {
-            background-color: #0056b3; /* Softer green for open jobs */
+            background-color: #0056b3; /* Softer blue for open jobs */
         }
-
+    
         .status-btn.closed {
-            background-color: Red; /* Orange for closed jobs */
+            background-color: red; /* Red for closed jobs */
         }
+    
         .status-btn:hover {
             opacity: 0.8; /* Slightly reduce opacity on hover */
         }
+
+        .status-form {
+        display: flex;
+        align-items: center;
+    }
+
+        .status-form select {
+            padding: 5px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .status-form button {
+            padding: 6px 12px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .status-form button:hover {
+            background-color: #0056b3;
+        }
     </style>
+    
 </head>
 <body>
     <div class="dashboard-container">
@@ -131,8 +174,19 @@
                                 <h3>{{ job.title }}</h3>
                                 <p>Posted: {{ job.created_at|date:"F d, Y" }}</p>
                                 <p>Location: {{ job.location }}</p>
+                                 <!-- Status Change Form -->
                                 <button class="details-btn" onclick='window.location.href="{% url 'applicants' job.id %}"'>View Applicants</button>
                                 <p class="views">Viewed by {{ job.views_count|default:0 }} people</p>
+                                <div class="status-form">
+                                    <form method="POST" action="{% url 'update_job_status' job.id %}">
+                                        {% csrf_token %}
+                                        <select name="status">
+                                            <option value="open" {% if job.status == 'open' %}selected{% endif %}>Open</option>
+                                            <option value="closed" {% if job.status == 'closed' %}selected{% endif %}>Closed</option>
+                                        </select>
+                                        <button type="submit">Update Status</button>
+                                    </form>
+                                </div>
                             </div>
                         {% endfor %}
                     {% else %}

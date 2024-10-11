@@ -176,7 +176,7 @@ def recruiter_dashboard(request):
             'profile': profile,
             'jobs': jobs,
             'applicants': applicants,
-            'applications': applications
+            'applications': applications,
             
         }
         return render(request, 'recruiters.html', context)
@@ -433,11 +433,28 @@ def view_applicants(request, id):
     return render(request, 'view_applicant.html', context)
 
 
-@login_required
-def jobs_viewed(request):
-    profile = Profile.objects.get(user=request.user)
-    jobs = Job.objects.filter(views_count__gt=0)
-    return render(request, 'jobs_viewed.html', {'jobs': jobs})
+def update_job_status(request, id):
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        
+        try:
+            # Fetch the job by ID
+            job = Job.objects.get(id=id)
+            job.status = status
+            job.save()
+
+            # Redirect back to the recruiter dashboard after update
+            return redirect('recruiter_dashboard')
+        
+        except Job.DoesNotExist:
+            # Handle the case where the job doesn't exist (optional)
+            return redirect('recruiter_dashboard')
+
+    # Redirect to the dashboard if not a POST request
+    return redirect('recruiter_dashboard')
+
+
+
 
 
 
