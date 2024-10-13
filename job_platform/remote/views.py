@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 from django.db import IntegrityError
+import requests
 
 
 
@@ -18,6 +19,41 @@ from django.db import IntegrityError
 # def index(request):
 #     featured_jobs = Job.objects.filter(featured=True) 
 #     return render(request, 'index.html', {'jobs': featured_jobs})
+def fetch_and_save_jobs(request):
+    url = 'https://remoteok.com/api'  # External API endpoint
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        jobs = response.json()
+        default_recruiter = Profile.objects.first()  # You can set this to any default recruiter
+        default_category = Category.objects.get(id=1)  # Or any category you wish to default to
+
+        for job_data in jobs:
+            location = job_data.get('location', 'Remote')  # Default to 'Remote' if no location
+            if 'remote' in location.lower():
+                title = job_data.get('position', 'N/A')
+                company_name = job_data.get('company', 'N/A')
+                description = job_data.get('description', 'N/A')
+
+                # Check if the job already exists in the database
+                if not Job.objects.filter(title=title, company_name=company_name).exists():
+                    # Save the job to the database
+                    Job.objects.create(
+                        title=title,
+                        description=description,
+                        location=location,
+                        company_name=company_name,
+                        recruiter=default_recruiter,  # Assign to default recruiter
+                        category=default_category,  # Assign to default category
+                        featured=False,  # Set default value for featured
+                        views_count=0,  # Set default value for views count
+                        status='open',  # Set default status to 'open'
+                    )
+
+        return HttpResponse("Jobs fetched and saved successfully!")
+    else:
+        return HttpResponse(f"Failed to retrieve jobs. Status code: {response.status_code}")
+
 
 def index(request):
     jobs = Job.objects.all()

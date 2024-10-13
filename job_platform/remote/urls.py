@@ -28,4 +28,5 @@ urlpatterns = [
     path('application/<int:id>/', views.submitted_application, name='application'),
     path('job/<int:id>/applicants', views.view_applicants, name='applicants'),
     path('update_status/<int:id>/', views.update_job_status, name='update_job_status'),
+    path('fetch_jobs/', views.fetch_and_save_jobs, name='fetch_jobs'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
