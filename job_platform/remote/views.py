@@ -34,6 +34,7 @@ def fetch_and_save_jobs(request):
                 title = job_data.get('position', 'N/A')
                 company_name = job_data.get('company', 'N/A')
                 description = job_data.get('description', 'N/A')
+                apply_url = job_data.get('apply_url', '')
 
                 # Check if the job already exists in the database
                 if not Job.objects.filter(title=title, company_name=company_name).exists():
@@ -48,6 +49,7 @@ def fetch_and_save_jobs(request):
                         featured=False,  # Set default value for featured
                         views_count=0,  # Set default value for views count
                         status='open',  # Set default status to 'open'
+                        apply_url=apply_url
                     )
 
         return HttpResponse("Jobs fetched and saved successfully!")

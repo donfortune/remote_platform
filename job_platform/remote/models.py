@@ -42,6 +42,7 @@ class Job(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     featured = models.BooleanField(default=False)
     views_count = models.IntegerField(default=0)
+    apply_url = models.URLField(max_length=255, blank=True, null=True)
     status = models.CharField(
         max_length=10,
         choices=[('open', 'Open'), ('closed', 'Closed')],

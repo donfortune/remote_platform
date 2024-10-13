@@ -45,7 +45,7 @@ class UserEditForm(forms.ModelForm):
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ['title', 'description', 'location', 'company_name', 'category', 'recruiter', 'status']  # Or specify fields explicitly
+        fields = ['title', 'description', 'location', 'company_name', 'category', 'recruiter', 'status', 'apply_url']  # Or specify fields explicitly
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

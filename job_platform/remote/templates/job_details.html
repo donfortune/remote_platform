@@ -128,9 +128,9 @@
                     <!-- Job Description -->
                     <div class="job-details mt-4">
                         <h2>Job Description</h2>
-                        <p>{{job.description}}</p>
+                        <p>{{ job.description|safe }}</p>
 
-                        <h2>Responsibilities</h2>
+                        <!-- <h2>Responsibilities</h2>
                         <ul>
                             <li>Develop and maintain machine learning algorithms and backend systems.</li>
                             <li>Work closely with the product and design teams to define requirements.</li>
@@ -145,11 +145,11 @@
                             <li>Strong knowledge of machine learning and AI algorithms.</li>
                             <li>Excellent problem-solving skills and attention to detail.</li>
                             <li>Good communication skills and team spirit.</li>
-                        </ul>
+                        </ul> -->
 
                         <!-- Apply Button -->
                         <div class="apply-btn">
-                            <a href="{% url 'application' job.id %}" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Apply Now</a>
+                            <a href='{{ job.apply_url }}"' class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Apply Now</a>
                         </div>
                     </div>
                 </div>
