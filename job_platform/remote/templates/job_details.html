@@ -149,7 +149,11 @@
 
                         <!-- Apply Button -->
                         <div class="apply-btn">
-                            <a href='{{ job.apply_url }}"' class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Apply Now</a>
+                            {% if job.apply_url %}
+                            <a href="{{ job.apply_url }}" target="_blank">Apply for this Job</a>
+                            {% else %}
+                                <p>No application link available</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
