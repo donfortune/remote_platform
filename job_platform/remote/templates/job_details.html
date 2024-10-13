@@ -74,6 +74,42 @@
             background-color: #007bff;
             color: white;
         }
+        /* Apply button styles */
+        .apply-btn a, 
+        .apply-btn button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px 5px;
+        }
+
+        /* External link button */
+        .apply-btn a {
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .apply-btn a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Internal platform apply button */
+        .apply-btn button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .apply-btn button:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -150,11 +186,19 @@
                         <!-- Apply Button -->
                         <div class="apply-btn">
                             {% if job.apply_url %}
-                            <a href="{{ job.apply_url }}" target="_blank">Apply for this Job</a>
+                            <a href="{{ job.apply_url }}" target="_blank">Apply Directly</a>
+                        
                             {% else %}
                                 <p>No application link available</p>
                             {% endif %}
+
+                            <form action="{% url 'application' job.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success">Apply via Our Platform</button>
+                            </form>
                         </div>
+
+                        
                     </div>
                 </div>
             </div>
