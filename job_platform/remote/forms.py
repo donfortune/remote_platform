@@ -24,6 +24,14 @@ class CustomUserCreationForm(forms.ModelForm):
         user.set_password(self.cleaned_data['password1'])
         if commit:
             user.save()
+            profile = Profile.objects.create(
+                user=user,
+                role=self.cleaned_data['role'],
+                bio=self.cleaned_data.get('bio', ''),
+                location=self.cleaned_data.get('location', ''),
+                company_name=self.cleaned_data.get('company_name', None),
+                resume=self.cleaned_data.get('resume', None),
+            )
         return user
 
 class RecruiterEditForm(forms.ModelForm):

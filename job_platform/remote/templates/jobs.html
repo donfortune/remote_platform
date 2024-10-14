@@ -36,7 +36,7 @@
             <h1>My Jobs Dashboard</h1>
             <nav>
                 <ul>
-                    <li><a href="/profile/">{{user.username}}</a></li>
+                    <li><a href="{% url 'get_profile' profile.id %}">{{user.username}}</a></li>
                     <li><a href="#" class="view-cv-btn">Resume</a></li>
                     <li><a href="#" class="add-cv-btn">Add Resume</a></li>
                     <li><a href="/logout/">Logout</a></li>
