@@ -83,14 +83,14 @@ def signup_view(request):
         form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            profile = Profile.objects.create(
-                user=user,
-                role=form.cleaned_data['role'],
-                bio=form.cleaned_data.get('bio', ''),
-                location=form.cleaned_data.get('location', ''),
-                company_name=form.cleaned_data.get('company_name', ''),
-                resume=form.cleaned_data.get('resume', None),
-            )
+            # profile = Profile.objects.create(
+            #     user=user,
+            #     role=form.cleaned_data['role'],
+            #     bio=form.cleaned_data.get('bio', ''),
+            #     location=form.cleaned_data.get('location', ''),
+            #     company_name=form.cleaned_data.get('company_name', ''),
+            #     resume=form.cleaned_data.get('resume', None),
+            # )
             login(request, user)
             
               
