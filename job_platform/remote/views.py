@@ -229,6 +229,7 @@ def jobs_dashboard(request):
     profile = Profile.objects.get(user=request.user)
     jobs = profile.viewed_jobs.all()
     applied_jobs = profile.applied_jobs.all()
+    
     print(jobs)
     print(applied_jobs)
     context = {

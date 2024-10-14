@@ -100,7 +100,7 @@
 
         /* Internal platform apply button */
         .apply-btn button {
-            background-color: #28a745;
+            background-color: #0056b3;
             color: white;
             border: none;
             cursor: pointer;
@@ -108,7 +108,7 @@
         }
 
         .apply-btn button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -151,13 +151,13 @@
                     <!-- Job Meta Information -->
                     <div class="job-meta">
                         <div>
-                            <i class="fas fa-briefcase"></i> AI Experts
+                            <i class="fas fa-briefcase"></i> {{job.title}}
                         </div>
                         <div>
-                            <i class="fas fa-map-marker-alt"></i> Remote
+                            <i class="fas fa-map-marker-alt"></i> {{job.location}}
                         </div>
                         <div>
-                            <i class="fas fa-calendar-alt"></i> Posted 2 days ago
+                            <i class="fas fa-calendar-alt"></i> {{job.created_at}}
                         </div>
                     </div>
 
