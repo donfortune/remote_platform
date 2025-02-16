@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 
-# Create your models here.
+
 ROLE_CHOICES = (
     ('recruiter', 'Recruiter'),
     ('job_seeker', 'Job Seeker'),
@@ -15,7 +15,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     role = models.CharField(max_length=30, choices=ROLE_CHOICES)  # Use choices for predefined options
-    company_name = models.CharField(max_length=100, blank=True, null=True)  # Recruiters' company
+    company_name = models.CharField(max_length=200, blank=True, null=True)  # Recruiters' company
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)  # Job seekers' resume
     viewed_jobs = models.ManyToManyField('Job', related_name='viewed_by', blank=True)
     applied_jobs = models.ManyToManyField('Job', related_name='applicants', blank=True)
